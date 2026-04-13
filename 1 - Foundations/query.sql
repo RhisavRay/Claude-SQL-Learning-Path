@@ -19,3 +19,14 @@ LIMIT   <n>;
 The clauses always go in this order when you write them. Internally MySQL evaluates them in a different order —
 FROM → WHERE → SELECT → ORDER BY → LIMIT — but we'll come back to that when it matters.
 */
+
+/*
+Task 1 — Warm up:
+
+Write a query that returns the brand, model, and price_inr of all bikes, sorted by price from highest to lowest. Limit the result to the top 5.
+*/
+
+-- SELECT brand, model, price_inr
+-- FROM bikes
+-- ORDER BY price_inr DESC
+-- LIMIT 5;
