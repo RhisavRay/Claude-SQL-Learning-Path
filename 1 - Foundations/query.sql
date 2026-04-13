@@ -197,21 +197,25 @@ of stock status.
 
 -- SELECT brand, model, price_inr
 -- FROM bikes
--- WHERE  type = 'Cruister' OR price_inr > 1000000;
+-- WHERE  type = 'Cruiser' OR price_inr > 1000000;
 
 
 /*
 Q3. Write a query that returns brand and model of all bikes where year is between 2021 and 2022, and are currently in stock. Use BETWEEN.
 */
 
-
+-- SELECT brand, model
+-- FROM bikes
+-- WHERE  year BETWEEN 2021 AND 2022 AND in_stock = True;
 
 
 /*
 Q4. You suspect some bikes might have a missing engine_cc. Write a query to check. What does the result tell you?
 */
 
-
+-- SELECT brand, model
+-- FROM bikes
+-- WHERE  engine_cc IS Null;
 
 
 /*
@@ -223,3 +227,4 @@ Q5. Without running it first — what will this query return, and why?
     AND price_inr > 500000;
 */
 
+-- It will show the brand and model of the bikes which are Naked type, and whose price is more than 500000
