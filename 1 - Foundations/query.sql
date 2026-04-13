@@ -10,11 +10,11 @@ This is called being declarative — a key mental shift from Python where you de
 
 The anatomy of a basic query
 
-SELECT  <columns>
-FROM    <table>
-WHERE   <condition>
-ORDER BY <column> ASC|DESC
-LIMIT   <n>;
+    SELECT  <columns>
+    FROM    <table>
+    WHERE   <condition>
+    ORDER BY <column> ASC|DESC
+    LIMIT   <n>;
 
 The clauses always go in this order when you write them. Internally MySQL evaluates them in a different order —
 FROM → WHERE → SELECT → ORDER BY → LIMIT — but we'll come back to that when it matters.
@@ -67,5 +67,40 @@ need it, and omit or optionally write ASC otherwise.
 
 
 /*
+Task 3 — Multiple conditions:
 
+Write a query that returns the brand, model, type, and price_inr of all bikes that are:
+
+    Naked type, AND
+    priced below ₹3,00,000, AND
+    currently in stock
+
+Sort the results by price_inr ascending.
+*/
+
+-- SELECT brand, model, type, price_inr
+-- FROM bikes
+-- WHERE type = 'Naked' AND price_inr < 300000 AND in_stock = True
+-- ORDER BY price_inr;
+
+
+
+
+/*
+Task 4 — Introducing OR, IN, and BETWEEN:
+
+Three operators, one task. Try to use all three in separate queries.
+
+4a. Write a query that returns brand, model, and type for all bikes that are either 'Sport' or 'Adventure' type. Use OR.
+*/
+
+-- SELECT brand, model, type
+-- FROM bikes
+-- WHERE type = 'Sport' OR type = 'Adventure';
+
+/*
+4b. Now write the same query using IN instead of OR.
+
+
+4c. Write a query that returns brand, model, and engine_cc for bikes with engine displacement between 300cc and 700cc (inclusive). Use BETWEEN.
 */
