@@ -30,3 +30,17 @@ Write a query that returns the brand, model, and price_inr of all bikes, sorted 
 -- FROM bikes
 -- ORDER BY price_inr DESC
 -- LIMIT 5;
+
+
+
+
+/*
+Task 2 — Adding a filter:
+
+Write a query that returns the brand, model, type, and engine_cc of all bikes that are currently in stock, sorted by engine_cc in ascending order.
+*/
+
+-- SELECT brand, model, type, engine_cc
+-- FROM bikes
+-- WHERE in_stock = True
+-- ORDER BY engine_cc;
