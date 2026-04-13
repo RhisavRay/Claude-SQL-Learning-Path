@@ -130,5 +130,22 @@ order (roughly insertion order, but never rely on that). In real queries, if ord
 
 
 /*
+Task 5 — NULL handling:
 
+First, run this to add a bike with a missing price:
+
+    INSERT INTO bikes VALUES (21, 'Harley-Davidson', 'X440', 'Cruiser', 440, NULL, 2023, TRUE);
+
+Then write two queries:
+
+5a. Return all bikes where price_inr is NULL.
+*/
+
+-- SELECT brand, model, type
+-- FROM bikes
+-- WHERE price_inr IS Null;
+
+
+/*
+5b. Return all bikes where price_inr is NOT NULL.
 */
