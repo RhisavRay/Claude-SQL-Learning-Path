@@ -111,3 +111,7 @@ Three operators, one task. Try to use all three in separate queries.
 /*
 4c. Write a query that returns brand, model, and engine_cc for bikes with engine displacement between 300cc and 700cc (inclusive). Use BETWEEN.
 */
+
+-- SELECT brand, model, engine_cc
+-- FROM bikes
+-- WHERE engine_cc BETWEEN 300 AND 700;
