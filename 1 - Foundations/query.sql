@@ -115,3 +115,20 @@ Three operators, one task. Try to use all three in separate queries.
 -- SELECT brand, model, engine_cc
 -- FROM bikes
 -- WHERE engine_cc BETWEEN 300 AND 700;
+
+/*
+Two things worth locking in about BETWEEN:
+
+First, it is inclusive on both ends. BETWEEN 300 AND 700 is exactly equivalent to engine_cc >= 300 AND engine_cc <= 700. No bike in our data
+sits exactly at 300 or 700, but if one did, it would be included. This trips people up — always remember both boundaries are in.
+
+Second, notice the results aren't sorted — you didn't add an ORDER BY and the task didn't ask for one, so MySQL returns rows in an arbitrary
+order (roughly insertion order, but never rely on that). In real queries, if order matters, always be explicit about it.
+*/
+
+
+
+
+/*
+
+*/
