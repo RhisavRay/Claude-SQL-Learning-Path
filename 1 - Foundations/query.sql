@@ -44,3 +44,28 @@ Write a query that returns the brand, model, type, and engine_cc of all bikes th
 -- FROM bikes
 -- WHERE in_stock = True
 -- ORDER BY engine_cc;
+
+
+
+
+/*
+A small but important note on TRUE in MySQL:
+
+MySQL stores BOOLEAN as TINYINT(1) under the hood. So TRUE = 1 and FALSE = 0. All three of these are equivalent and valid in MySQL:
+    
+    WHERE in_stock = TRUE
+    WHERE in_stock = 1
+    WHERE in_stock IS TRUE
+
+You'll often see the = 1 form in older codebases. Your = TRUE is perfectly fine and the most readable — stick with it.
+
+Also notice the dropped ASC from ORDER BY. ASC is the default, so it's optional. Worth knowing explicitly though: always write DESC when you
+need it, and omit or optionally write ASC otherwise.
+*/
+
+
+
+
+/*
+
+*/
