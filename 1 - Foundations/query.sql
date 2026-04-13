@@ -98,9 +98,16 @@ Three operators, one task. Try to use all three in separate queries.
 -- FROM bikes
 -- WHERE type = 'Sport' OR type = 'Adventure';
 
+
 /*
 4b. Now write the same query using IN instead of OR.
+*/
+
+-- SELECT brand, model, type
+-- FROM bikes
+-- WHERE type IN ('Sport', 'Adventure');
 
 
+/*
 4c. Write a query that returns brand, model, and engine_cc for bikes with engine displacement between 300cc and 700cc (inclusive). Use BETWEEN.
 */
