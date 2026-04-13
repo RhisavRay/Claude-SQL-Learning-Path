@@ -149,3 +149,7 @@ Then write two queries:
 /*
 5b. Return all bikes where price_inr is NOT NULL.
 */
+
+-- SELECT brand, model, type
+-- FROM bikes
+-- WHERE price_inr IS NOT Null;
