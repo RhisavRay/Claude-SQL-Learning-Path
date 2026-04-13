@@ -195,7 +195,9 @@ Q2. Write a query that returns brand, model, and price_inr of bikes that are eit
 of stock status.
 */
 
-
+-- SELECT brand, model, price_inr
+-- FROM bikes
+-- WHERE  type = 'Cruister' OR price_inr > 1000000;
 
 
 /*
