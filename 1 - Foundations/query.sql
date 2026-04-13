@@ -153,3 +153,24 @@ Then write two queries:
 -- SELECT brand, model, type
 -- FROM bikes
 -- WHERE price_inr IS NOT Null;
+
+
+
+/*
+Why = NULL returns nothing — ever:
+
+NULL in SQL doesn't mean zero or empty. It means unknown. And the result of comparing anything to an
+unknown is also unknown — not TRUE, not FALSE, just unknown. MySQL silently drops all rows where the
+WHERE condition doesn't evaluate to TRUE. So price_inr = NULL never matches anything, including the
+row that actually has NULL in that column.
+
+This is called three-valued logic in SQL — conditions can be TRUE, FALSE, or UNKNOWN. Only TRUE rows
+make it through WHERE.
+
+The fix is IS NULL / IS NOT NULL — these are special operators designed specifically to check for the
+absence of a value. They're the only correct way to filter NULLs.
+
+A practical rule to tattoo in your brain:
+
+    Never use = NULL or != NULL. Always use IS NULL or IS NOT NULL.
+*/
