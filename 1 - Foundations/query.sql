@@ -174,3 +174,26 @@ A practical rule to tattoo in your brain:
 
     Never use = NULL or != NULL. Always use IS NULL or IS NOT NULL.
 */
+
+
+
+
+/*
+Stage 1 Quiz
+
+Q1. Write a query that returns model and year of all bikes made in 2023, sorted alphabetically by model.
+
+Q2. Write a query that returns brand, model, and price_inr of bikes that are either Cruiser type OR cost more than ₹10,00,000 — regardless
+of stock status.
+
+Q3. Write a query that returns brand and model of all bikes where year is between 2021 and 2022, and are currently in stock. Use BETWEEN.
+
+Q4. You suspect some bikes might have a missing engine_cc. Write a query to check. What does the result tell you?
+
+Q5. Without running it first — what will this query return, and why?
+
+    SELECT brand, model
+    FROM bikes
+    WHERE type = 'Naked'
+    AND price_inr > 500000;
+*/
