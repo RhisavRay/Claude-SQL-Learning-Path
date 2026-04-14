@@ -110,3 +110,29 @@ descending.
 -- FROM bikes
 -- GROUP BY brand
 -- ORDER BY Count DESC;
+
+
+
+
+/*
+Now the natural next question is:
+
+What if you want to filter on the result of an aggregation?
+
+For example — what if you only want brands that have more than 2 bikes in the table?
+
+You can't use WHERE for this. WHERE filters individual rows before grouping happens. By the time COUNT(*) is calculated, WHERE has already finished
+its job.
+
+This is where HAVING comes in. It filters after grouping:
+
+    SELECT brand, COUNT(*) as Count
+    FROM bikes
+    GROUP BY brand
+    HAVING Count > 2;
+
+The mental model:
+
+    WHERE → filters rows before grouping
+    HAVING → filters groups after aggregation
+*/
