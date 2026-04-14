@@ -76,5 +76,12 @@ This returns one row per brand, with a count of how many bikes each brand has.
 
 
 /*
+Task 2
 
+2a. Write a query that returns each type of bike along with the average price and count of bikes in that type. Sort by average price
+descending.
+
+
+2b. Write a query that returns each brand along with the total number of bikes and the maximum engine size they offer. Sort by total bikes
+descending.
 */
