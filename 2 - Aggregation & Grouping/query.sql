@@ -36,3 +36,20 @@ This returns a single row — the total bike count, average price, and highest p
 Important: COUNT(*) counts all rows including NULLs. COUNT(price_inr) counts only rows where price_inr is not NULL. Given our Harley-Davidson
 X440 has a NULL price, these two will return different numbers in our table. Keep that in mind.
 */
+
+
+
+
+/*
+Task 1 — Basic aggregation:
+
+Write a single query that returns:
+
+    Total number of bikes in the table
+    Number of bikes that have a price listed (non-NULL)
+    The cheapest price in the table
+    The most expensive price in the table
+    The average price (rounded to 2 decimal places is fine, no special function needed yet)
+
+All five values in one query, one row returned.
+*/
