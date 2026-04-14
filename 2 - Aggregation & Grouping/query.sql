@@ -156,3 +156,8 @@ Task 3 — HAVING:
 3b. Write a query that returns brands that have at least 2 bikes in stock (in_stock = TRUE). Show the brand and the count of in-stock bikes.
 */
 
+-- select brand, count(*) as Bikes_in_stock
+-- FROM bikes
+-- WHERE in_stock = True
+-- GROUP BY brand
+-- HAVING Bikes_in_stock >= 2;
