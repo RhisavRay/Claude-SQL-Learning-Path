@@ -106,3 +106,7 @@ Two things worth highlighting here:
 descending.
 */
 
+-- select brand, COUNT(*) as Count, MAX(engine_cc) as Highest_Capacity
+-- FROM bikes
+-- GROUP BY brand
+-- ORDER BY Count DESC;
