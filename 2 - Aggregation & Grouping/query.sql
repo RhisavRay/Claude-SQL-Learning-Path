@@ -80,8 +80,16 @@ Task 2
 
 2a. Write a query that returns each type of bike along with the average price and count of bikes in that type. Sort by average price
 descending.
+*/
+
+-- select type, COUNT(*) as Count, AVG(price_inr) as Average_price
+-- FROM bikes
+-- GROUP BY type
+-- ORDER BY Average_price DESC;
 
 
+/*
 2b. Write a query that returns each brand along with the total number of bikes and the maximum engine size they offer. Sort by total bikes
 descending.
 */
+
