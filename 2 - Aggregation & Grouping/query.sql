@@ -54,5 +54,12 @@ Write a single query that returns:
 All five values in one query, one row returned.
 */
 
--- SELECT COUNT(*), COUNT('price_inr'), MIN('price_inr'), MAX('price_inr'), AVG('price_inr')
+-- SELECT COUNT(*), COUNT(price_inr), MIN(price_inr), MAX(price_inr), AVG(price_inr)
 -- FROM bikes;
+
+
+
+
+/*
+
+*/
