@@ -61,5 +61,20 @@ All five values in one query, one row returned.
 
 
 /*
+GROUP BY:
+
+GROUP BY is what makes aggregation truly powerful. Instead of one summary row for the whole table, you get one summary row per group.
+
+    SELECT brand, COUNT(*)
+    FROM bikes
+    GROUP BY brand;
+
+This returns one row per brand, with a count of how many bikes each brand has.
+*/
+
+
+
+
+/*
 
 */
