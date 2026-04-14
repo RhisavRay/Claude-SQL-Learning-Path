@@ -136,3 +136,20 @@ The mental model:
     WHERE → filters rows before grouping
     HAVING → filters groups after aggregation
 */
+
+
+
+
+/*
+Task 3 — HAVING:
+
+3a. Write a query that returns only the bike types that have an average price above ₹3,00,000. Show the type and the average price.
+*/
+
+
+
+
+/*
+3b. Write a query that returns brands that have at least 2 bikes in stock (in_stock = TRUE). Show the brand and the count of in-stock bikes.
+*/
+
