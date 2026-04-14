@@ -87,6 +87,19 @@ descending.
 -- GROUP BY type
 -- ORDER BY Average_price DESC;
 
+/*
+Two things worth highlighting here:
+
+    1. Aliases with AS — you used COUNT(*) as Count and AVG(price_inr) as Average_price. That's the right habit. It makes output readable and,
+    importantly, you then used Average_price in ORDER BY instead of repeating AVG(price_inr). MySQL allows referencing SELECT aliases in
+    ORDER BY — one of the few places where the evaluation order works in your favour.
+
+    2. The Cruiser average — notice Cruiser shows 4 bikes and an average of ₹2,96,000. But we inserted the Harley-Davidson X440 as a Cruiser
+    with a NULL price. So AVG(price_inr) silently ignored that NULL row and averaged only the 3 priced Cruisers — yet COUNT(*) counted all
+    4 including the NULL one. This is a subtle but real trap in real-world data: your count and your average are operating on different
+    numbers of rows without warning you.
+*/
+
 
 /*
 2b. Write a query that returns each brand along with the total number of bikes and the maximum engine size they offer. Sort by total bikes
