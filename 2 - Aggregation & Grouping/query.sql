@@ -146,7 +146,10 @@ Task 3 — HAVING:
 3a. Write a query that returns only the bike types that have an average price above ₹3,00,000. Show the type and the average price.
 */
 
-
+-- select type, AVG(price_inr) Average_Price
+-- FROM bikes
+-- GROUP BY type
+-- HAVING Average_Price > 300000;
 
 
 /*
