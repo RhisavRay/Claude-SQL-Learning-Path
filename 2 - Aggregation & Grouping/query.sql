@@ -161,3 +161,13 @@ Task 3 — HAVING:
 -- WHERE in_stock = True
 -- GROUP BY brand
 -- HAVING Bikes_in_stock >= 2;
+
+/*
+The full evaluation order from MySQL's PoV so far, locked in:
+
+FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
+
+And from our PoV:
+
+SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT
+*/
