@@ -235,5 +235,8 @@ the row is excluded.
 -- INNER JOIN bikes b ON o.bike_id = b.bike_id;
 
 /*
+Table aliases — typing full table names gets tedious. Use aliases:
 
+Same query, much cleaner. The alias is defined right after the table name in FROM and JOIN. Use short, obvious aliases — o for orders, c for
+customers, b for bikes.
 */
