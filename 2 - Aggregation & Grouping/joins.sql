@@ -73,7 +73,15 @@ Task 1 — INNER JOIN:
 1a. Write a query that returns the customer's name, the model of bike they ordered, and the order_date. Use aliases.
 */
 
-
+-- SELECT
+	-- c.name,
+    -- b.model,
+    -- o. order_date
+-- FROM orders AS o
+-- INNER JOIN customers AS c
+	-- ON o.customer_id = c.customer_id
+-- INNER JOIN bikes AS b
+	-- ON o.bike_id = b.bike_id
 
 
 /*
