@@ -222,3 +222,18 @@ INNER JOIN — only the overlap
 This example joins all three tables at once. Only orders that have a matching customer AND a matching bike will appear — if either link is broken,
 the row is excluded.
 */
+
+
+
+
+-- SELECT 
+    -- c.name,
+    -- b.model,
+    -- o.order_date
+-- FROM orders o
+-- INNER JOIN customers c ON o.customer_id = c.customer_id
+-- INNER JOIN bikes b ON o.bike_id = b.bike_id;
+
+/*
+
+*/
