@@ -63,3 +63,19 @@ Table aliases — typing full table names gets tedious. Use aliases:
 Same query, much cleaner. The alias is defined right after the table name in FROM and JOIN. Use short, obvious aliases — o for orders, c for
 customers, b for bikes.
 */
+
+
+
+
+/*
+Task 1 — INNER JOIN:
+
+1a. Write a query that returns the customer's name, the model of bike they ordered, and the order_date. Use aliases.
+*/
+
+
+
+
+/*
+1b. Extend the same query to also show the price_inr of the bike and the discount from the order. Sort by order_date ascending.
+*/
