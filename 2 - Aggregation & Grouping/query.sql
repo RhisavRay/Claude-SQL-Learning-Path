@@ -202,3 +202,20 @@ Think of two overlapping circles. Left circle = Table A, Right circle = Table B.
 
 MySQL doesn't support FULL OUTER JOIN natively — we'll cover how to simulate it when we get there.
 */
+
+
+
+
+-- SELECT 
+    -- customers.name,
+    -- bikes.model,
+    -- orders.order_date
+-- FROM orders
+-- INNER JOIN customers
+-- ON orders.customer_id = customers.customer_id
+-- INNER JOIN bikes
+-- ON orders.bike_id = bikes.bike_id;
+
+/*
+
+*/
