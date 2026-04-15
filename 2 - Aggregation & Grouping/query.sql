@@ -171,3 +171,34 @@ And from our PoV:
 
 SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT
 */
+
+
+
+
+/*
+Joins
+So far every query has pulled from a single table. But real data is never in one table — customers live in customers, purchases live in orders, and
+bike details live in bikes. Joins are how you stitch them together.
+
+The core idea:
+
+A join combines rows from two tables based on a related column between them. In our schema, orders has a bike_id column that references
+bikes.bike_id. That link is the join condition.
+
+    SELECT *
+    FROM orders
+    INNER JOIN bikes ON orders.bike_id = bikes.bike_id;
+
+This returns one row for every order, enriched with the full bike details for that order.
+
+The four join types — visualised
+
+Think of two overlapping circles. Left circle = Table A, Right circle = Table B.
+    
+    INNER JOIN - Only rows that match in both tables
+    LEFT JOIN - All rows from left table + matches from right (NULLs where no match)
+    RIGHT JOIN - All rows from right table + matches from left (NULLs where no match)
+    FULL OUTER JOIN - Everything from both tables (NULLs where no match on either side)
+
+MySQL doesn't support FULL OUTER JOIN natively — we'll cover how to simulate it when we get there.
+*/
