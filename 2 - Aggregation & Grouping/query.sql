@@ -217,5 +217,8 @@ MySQL doesn't support FULL OUTER JOIN natively — we'll cover how to simulate i
 -- ON orders.bike_id = bikes.bike_id;
 
 /*
+INNER JOIN — only the overlap
 
+This example joins all three tables at once. Only orders that have a matching customer AND a matching bike will appear — if either link is broken,
+the row is excluded.
 */
