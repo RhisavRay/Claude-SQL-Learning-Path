@@ -232,3 +232,10 @@ GROUP BY c.customer_id;
 should still appear with a count of 0.
 */
 
+SELECT
+	b.brand,
+    COUNT(o.order_id) AS No_of_orders
+FROM bikes AS b
+LEFT JOIN orders o
+	ON b.bike_id = o.bike_id
+GROUP BY b.brand;
