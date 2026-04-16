@@ -151,3 +151,11 @@ LEFT JOIN orders as o
 2b. Modify the query to return only customers who have never placed an order. Think about how to filter for NULLs on the joined side.
 */
 
+SELECT
+	c.customer_id,
+    c.name,
+    o.order_id
+FROM customers AS c
+LEFT JOIN orders as o
+	ON c.customer_id = o.customer_id
+WHERE o.order_id IS Null
