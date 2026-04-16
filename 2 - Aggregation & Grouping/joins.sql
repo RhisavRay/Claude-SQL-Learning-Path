@@ -182,3 +182,47 @@ RIGHT JOIN is just a LEFT JOIN flipped — all rows from the right table are pre
 Honestly, most SQL writers rarely use RIGHT JOIN in practice. Any RIGHT JOIN can be rewritten as a LEFT JOIN by swapping the table order, and
 left-to-right reading feels more natural. But you should know it exists and recognise it.
 */
+
+
+
+
+/*
+FULL OUTER JOIN — everything from both sides
+
+A FULL OUTER JOIN returns all rows from both tables, with NULLs wherever there's no match on either side. MySQL doesn't support it natively, but
+it's easy to simulate:
+*/
+
+SELECT c.name, o.order_id
+FROM customers c
+LEFT JOIN orders o
+    ON c.customer_id = o.customer_id
+
+UNION
+
+SELECT c.name, o.order_id
+FROM customers c
+RIGHT JOIN orders o
+    ON c.customer_id = o.customer_id;
+
+-- UNION combines the two result sets and removes duplicates — giving you the full outer join effect.
+
+
+
+
+
+/*
+Task 3 — Putting joins together with aggregation:
+
+3a. Write a query that shows each customer's name and the total number of orders they've placed. Include customers who have placed zero orders
+(Siddharth Roy and Meera Pillai should appear with a count of 0, not be excluded).
+*/
+
+
+
+
+/*
+3b. Write a query that shows each brand and the total number of times bikes of that brand have been ordered. Brands that have never been ordered
+should still appear with a count of 0.
+*/
+
