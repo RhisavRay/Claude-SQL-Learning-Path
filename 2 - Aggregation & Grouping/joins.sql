@@ -29,15 +29,15 @@ MySQL doesn't support FULL OUTER JOIN natively — we'll cover how to simulate i
 
 
 
--- SELECT 
-    -- customers.name,
-    -- bikes.model,
-    -- orders.order_date
--- FROM orders
--- INNER JOIN customers
--- ON orders.customer_id = customers.customer_id
--- INNER JOIN bikes
--- ON orders.bike_id = bikes.bike_id;
+SELECT 
+    customers.name,
+    bikes.model,
+    orders.order_date
+FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.customer_id
+INNER JOIN bikes
+ON orders.bike_id = bikes.bike_id;
 
 /*
 INNER JOIN — only the overlap
@@ -49,13 +49,13 @@ the row is excluded.
 
 
 
--- SELECT 
-    -- c.name,
-    -- b.model,
-    -- o.order_date
--- FROM orders o
--- INNER JOIN customers c ON o.customer_id = c.customer_id
--- INNER JOIN bikes b ON o.bike_id = b.bike_id;
+SELECT 
+    c.name,
+    b.model,
+    o.order_date
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
 
 /*
 Table aliases — typing full table names gets tedious. Use aliases:
@@ -73,30 +73,56 @@ Task 1 — INNER JOIN:
 1a. Write a query that returns the customer's name, the model of bike they ordered, and the order_date. Use aliases.
 */
 
--- SELECT
--- 	   c.name,
---     b.model,
---     o.order_date
--- FROM orders AS o
--- INNER JOIN customers AS c
--- 	ON o.customer_id = c.customer_id
--- INNER JOIN bikes AS b
--- 	ON o.bike_id = b.bike_id
+SELECT
+    c.name,
+    b.model,
+    o.order_date
+FROM orders AS o
+INNER JOIN customers AS c
+	ON o.customer_id = c.customer_id
+INNER JOIN bikes AS b
+	ON o.bike_id = b.bike_id
 
 
 /*
 1b. Extend the same query to also show the price_inr of the bike and the discount from the order. Sort by order_date ascending.
 */
 
--- SELECT
--- 	c.name,
---     b.model,
---     b.price_inr,
---     o.discount,
---     o.order_date
--- FROM orders AS o
--- INNER JOIN customers AS c
--- 	ON o.customer_id = c.customer_id
--- INNER JOIN bikes AS b
--- 	ON o.bike_id = b.bike_id
--- ORDER BY o.order_date;
+SELECT
+	c.name,
+    b.model,
+    b.price_inr,
+    o.discount,
+    o.order_date
+FROM orders AS o
+INNER JOIN customers AS c
+	ON o.customer_id = c.customer_id
+INNER JOIN bikes AS b
+	ON o.bike_id = b.bike_id
+ORDER BY o.order_date;
+
+
+
+
+/*
+LEFT JOIN — keeping the unmatched left side
+
+INNER JOIN only returns rows with matches on both sides. LEFT JOIN returns all rows from the left table, plus whatever matches from the right — and
+fills in NULL where there's no match.
+
+Classic use case: "Show me all customers, even those who haven't placed an order yet."
+*/
+
+
+
+
+SELECT 
+    c.name,
+    o.order_id,
+    o.order_date
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id;
+
+/*
+Customers with no orders will appear with NULL in order_id and order_date.
+*/
