@@ -121,7 +121,8 @@ SELECT
     o.order_id,
     o.order_date
 FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id;
+LEFT JOIN orders o
+    ON c.customer_id = o.customer_id;
 
 /*
 Customers with no orders will appear with NULL in order_id and order_date.
@@ -133,10 +134,17 @@ Customers with no orders will appear with NULL in order_id and order_date.
 /*
 Task 2 — LEFT JOIN:
 
-2a. Write a query that returns all customers and their orders. Customers who have never placed an order should still appear — with NULL in the order columns.
+2a. Write a query that returns all customers and their orders. Customers who have never placed an order should still appear — with NULL in the order
+columns.
 */
 
-
+SELECT
+	c.customer_id,
+    c.name,
+    o.order_id
+FROM customers AS c
+LEFT JOIN orders as o
+	ON c.customer_id = o.customer_id
 
 
 /*
