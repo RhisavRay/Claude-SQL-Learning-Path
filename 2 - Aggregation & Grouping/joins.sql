@@ -126,3 +126,20 @@ LEFT JOIN orders o ON c.customer_id = o.customer_id;
 /*
 Customers with no orders will appear with NULL in order_id and order_date.
 */
+
+
+
+
+/*
+Task 2 — LEFT JOIN:
+
+2a. Write a query that returns all customers and their orders. Customers who have never placed an order should still appear — with NULL in the order columns.
+*/
+
+
+
+
+/*
+2b. Modify the query to return only customers who have never placed an order. Think about how to filter for NULLs on the joined side.
+*/
+
