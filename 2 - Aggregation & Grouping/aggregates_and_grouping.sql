@@ -54,8 +54,8 @@ Write a single query that returns:
 All five values in one query, one row returned.
 */
 
--- SELECT COUNT(*), COUNT(price_inr), MIN(price_inr), MAX(price_inr), AVG(price_inr)
--- FROM bikes;
+SELECT COUNT(*), COUNT(price_inr), MIN(price_inr), MAX(price_inr), AVG(price_inr)
+FROM bikes;
 
 
 
@@ -82,10 +82,10 @@ Task 2
 descending.
 */
 
--- select type, COUNT(*) as Count, AVG(price_inr) as Average_price
--- FROM bikes
--- GROUP BY type
--- ORDER BY Average_price DESC;
+select type, COUNT(*) as Count, AVG(price_inr) as Average_price
+FROM bikes
+GROUP BY type
+ORDER BY Average_price DESC;
 
 /*
 Two things worth highlighting here:
@@ -106,10 +106,10 @@ Two things worth highlighting here:
 descending.
 */
 
--- select brand, COUNT(*) as Count, MAX(engine_cc) as Highest_Capacity
--- FROM bikes
--- GROUP BY brand
--- ORDER BY Count DESC;
+select brand, COUNT(*) as Count, MAX(engine_cc) as Highest_Capacity
+FROM bikes
+GROUP BY brand
+ORDER BY Count DESC;
 
 
 
@@ -146,21 +146,21 @@ Task 3 — HAVING:
 3a. Write a query that returns only the bike types that have an average price above ₹3,00,000. Show the type and the average price.
 */
 
--- select type, AVG(price_inr) Average_Price
--- FROM bikes
--- GROUP BY type
--- HAVING Average_Price > 300000;
+select type, AVG(price_inr) Average_Price
+FROM bikes
+GROUP BY type
+HAVING Average_Price > 300000;
 
 
 /*
 3b. Write a query that returns brands that have at least 2 bikes in stock (in_stock = TRUE). Show the brand and the count of in-stock bikes.
 */
 
--- select brand, count(*) as Bikes_in_stock
--- FROM bikes
--- WHERE in_stock = True
--- GROUP BY brand
--- HAVING Bikes_in_stock >= 2;
+select brand, count(*) as Bikes_in_stock
+FROM bikes
+WHERE in_stock = True
+GROUP BY brand
+HAVING Bikes_in_stock >= 2;
 
 /*
 The full evaluation order from MySQL's PoV so far, locked in:

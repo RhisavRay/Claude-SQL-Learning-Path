@@ -26,10 +26,10 @@ Task 1 — Warm up:
 Write a query that returns the brand, model, and price_inr of all bikes, sorted by price from highest to lowest. Limit the result to the top 5.
 */
 
--- SELECT brand, model, price_inr
--- FROM bikes
--- ORDER BY price_inr DESC
--- LIMIT 5;
+SELECT brand, model, price_inr
+FROM bikes
+ORDER BY price_inr DESC
+LIMIT 5;
 
 
 
@@ -40,10 +40,10 @@ Task 2 — Adding a filter:
 Write a query that returns the brand, model, type, and engine_cc of all bikes that are currently in stock, sorted by engine_cc in ascending order.
 */
 
--- SELECT brand, model, type, engine_cc
--- FROM bikes
--- WHERE in_stock = True
--- ORDER BY engine_cc;
+SELECT brand, model, type, engine_cc
+FROM bikes
+WHERE in_stock = True
+ORDER BY engine_cc;
 
 
 
@@ -78,10 +78,10 @@ Write a query that returns the brand, model, type, and price_inr of all bikes th
 Sort the results by price_inr ascending.
 */
 
--- SELECT brand, model, type, price_inr
--- FROM bikes
--- WHERE type = 'Naked' AND price_inr < 300000 AND in_stock = True
--- ORDER BY price_inr;
+SELECT brand, model, type, price_inr
+FROM bikes
+WHERE type = 'Naked' AND price_inr < 300000 AND in_stock = True
+ORDER BY price_inr;
 
 
 
@@ -94,27 +94,27 @@ Three operators, one task. Try to use all three in separate queries.
 4a. Write a query that returns brand, model, and type for all bikes that are either 'Sport' or 'Adventure' type. Use OR.
 */
 
--- SELECT brand, model, type
--- FROM bikes
--- WHERE type = 'Sport' OR type = 'Adventure';
+SELECT brand, model, type
+FROM bikes
+WHERE type = 'Sport' OR type = 'Adventure';
 
 
 /*
 4b. Now write the same query using IN instead of OR.
 */
 
--- SELECT brand, model, type
--- FROM bikes
--- WHERE type IN ('Sport', 'Adventure');
+SELECT brand, model, type
+FROM bikes
+WHERE type IN ('Sport', 'Adventure');
 
 
 /*
 4c. Write a query that returns brand, model, and engine_cc for bikes with engine displacement between 300cc and 700cc (inclusive). Use BETWEEN.
 */
 
--- SELECT brand, model, engine_cc
--- FROM bikes
--- WHERE engine_cc BETWEEN 300 AND 700;
+SELECT brand, model, engine_cc
+FROM bikes
+WHERE engine_cc BETWEEN 300 AND 700;
 
 /*
 Two things worth locking in about BETWEEN:
@@ -141,18 +141,18 @@ Then write two queries:
 5a. Return all bikes where price_inr is NULL.
 */
 
--- SELECT brand, model, type
--- FROM bikes
--- WHERE price_inr IS Null;
+SELECT brand, model, type
+FROM bikes
+WHERE price_inr IS Null;
 
 
 /*
 5b. Return all bikes where price_inr is NOT NULL.
 */
 
--- SELECT brand, model, type
--- FROM bikes
--- WHERE price_inr IS NOT Null;
+SELECT brand, model, type
+FROM bikes
+WHERE price_inr IS NOT Null;
 
 
 
@@ -184,10 +184,10 @@ Stage 1 Quiz
 Q1. Write a query that returns model and year of all bikes made in 2023, sorted alphabetically by model.
 */
 
--- SELECT model, year
--- FROM bikes
--- WHERE  year = 2023
--- ORDER BY model;
+SELECT model, year
+FROM bikes
+WHERE  year = 2023
+ORDER BY model;
 
 
 /*
@@ -195,27 +195,27 @@ Q2. Write a query that returns brand, model, and price_inr of bikes that are eit
 of stock status.
 */
 
--- SELECT brand, model, price_inr
--- FROM bikes
--- WHERE  type = 'Cruiser' OR price_inr > 1000000;
+SELECT brand, model, price_inr
+FROM bikes
+WHERE  type = 'Cruiser' OR price_inr > 1000000;
 
 
 /*
 Q3. Write a query that returns brand and model of all bikes where year is between 2021 and 2022, and are currently in stock. Use BETWEEN.
 */
 
--- SELECT brand, model
--- FROM bikes
--- WHERE  year BETWEEN 2021 AND 2022 AND in_stock = True;
+SELECT brand, model
+FROM bikes
+WHERE  year BETWEEN 2021 AND 2022 AND in_stock = True;
 
 
 /*
 Q4. You suspect some bikes might have a missing engine_cc. Write a query to check. What does the result tell you?
 */
 
--- SELECT brand, model
--- FROM bikes
--- WHERE  engine_cc IS Null;
+SELECT brand, model
+FROM bikes
+WHERE  engine_cc IS Null;
 
 
 /*
