@@ -74,16 +74,29 @@ Task 1 — INNER JOIN:
 */
 
 -- SELECT
-	-- c.name,
-    -- b.model,
-    -- o. order_date
+-- 	   c.name,
+--     b.model,
+--     o.order_date
 -- FROM orders AS o
 -- INNER JOIN customers AS c
-	-- ON o.customer_id = c.customer_id
+-- 	ON o.customer_id = c.customer_id
 -- INNER JOIN bikes AS b
-	-- ON o.bike_id = b.bike_id
+-- 	ON o.bike_id = b.bike_id
 
 
 /*
 1b. Extend the same query to also show the price_inr of the bike and the discount from the order. Sort by order_date ascending.
 */
+
+-- SELECT
+-- 	c.name,
+--     b.model,
+--     b.price_inr,
+--     o.discount,
+--     o.order_date
+-- FROM orders AS o
+-- INNER JOIN customers AS c
+-- 	ON o.customer_id = c.customer_id
+-- INNER JOIN bikes AS b
+-- 	ON o.bike_id = b.bike_id
+-- ORDER BY o.order_date;
