@@ -218,7 +218,13 @@ Task 3 — Putting joins together with aggregation:
 (Siddharth Roy and Meera Pillai should appear with a count of 0, not be excluded).
 */
 
-
+SELECT
+	c.name,
+    COUNT(o.order_id) No_of_orders
+FROM customers AS c
+LEFT JOIN orders AS o
+	ON c.customer_id = o.customer_id
+GROUP BY c.customer_id;
 
 
 /*
