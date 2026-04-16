@@ -239,3 +239,17 @@ FROM bikes AS b
 LEFT JOIN orders o
 	ON b.bike_id = o.bike_id
 GROUP BY b.brand;
+
+/*
+Why COUNT(o.order_id) and not COUNT(*)?
+
+For unmatched rows (Siddharth Roy, Meera Pillai, Suzuki, TVS, Harley-Davidson), the LEFT JOIN fills the orders side with NULLs. At that point:
+    
+    COUNT(*) counts the row itself — it would return 1, not 0
+    COUNT(o.order_id) counts only non-NULL values in that column — it correctly returns 0
+
+You used COUNT(o.order_id) — the right choice. COUNT(*) on a left-joined table gives you wrong zeros disguised as ones.
+
+3b grouping by b.brand — also worth noting. Multiple bikes share the same brand, so grouping by b.brand correctly collapses them. We could have
+also grouped by b.bike_id and then aggregated brand counts differently, but brand-level grouping is exactly what the question asked for.
+*/
