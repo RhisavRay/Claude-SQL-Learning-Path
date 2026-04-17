@@ -379,7 +379,8 @@ WHERE bike_id = 16;
 5b. A customer named Siddharth Roy has requested account deletion. Delete him from the customers table.
 */
 
-
+DELETE FROM customers
+WHERE name = 'Siddharth Roy';
 
 
 /*
