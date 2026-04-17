@@ -368,7 +368,11 @@ Task 5 — DML:
 5a. The TVS Apache RR 310 just got a price revision — update its price_inr to ₹2,85,000 and set in_stock to TRUE. Use its bike_id.
 */
 
-
+UPDATE bikes
+SET
+	price_inr = 285000,
+    in_stock = True
+WHERE bike_id = 16;
 
 
 /*
