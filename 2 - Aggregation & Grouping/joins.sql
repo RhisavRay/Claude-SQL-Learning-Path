@@ -253,3 +253,13 @@ You used COUNT(o.order_id) — the right choice. COUNT(*) on a left-joined table
 3b grouping by b.brand — also worth noting. Multiple bikes share the same brand, so grouping by b.brand correctly collapses them. We could have
 also grouped by b.bike_id and then aggregated brand counts differently, but brand-level grouping is exactly what the question asked for.
 */
+
+
+
+
+/*
+CROSS JOIN
+
+CROSS JOIN produces every combination of rows from two tables — no ON condition needed. With 10 customers and 21 bikes, a cross join gives 210 rows.
+Rare in analytics but useful for generating combinations, test data, or calendar grids.
+*/
