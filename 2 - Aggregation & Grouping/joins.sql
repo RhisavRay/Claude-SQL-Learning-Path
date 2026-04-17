@@ -263,3 +263,7 @@ CROSS JOIN
 CROSS JOIN produces every combination of rows from two tables — no ON condition needed. With 10 customers and 21 bikes, a cross join gives 210 rows.
 Rare in analytics but useful for generating combinations, test data, or calendar grids.
 */
+
+SELECT c.name, b.model
+FROM customers c
+CROSS JOIN bikes b;
