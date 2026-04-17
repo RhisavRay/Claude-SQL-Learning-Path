@@ -264,7 +264,9 @@ CROSS JOIN produces every combination of rows from two tables — no ON conditio
 Rare in analytics but useful for generating combinations, test data, or calendar grids.
 */
 
-SELECT c.name, b.model
+SELECT
+    c.name,
+    b.model
 FROM customers c
 CROSS JOIN bikes b;
 
@@ -281,9 +283,12 @@ Our bikes dataset doesn't have a natural self-referencing structure, so I'll sho
 */
 
 -- If bikes had a 'similar_bike_id' column pointing to another bike:
-SELECT a.model AS bike, b.model AS similar_to
+SELECT
+    a.model AS bike,
+    b.model AS similar_to
 FROM bikes a
-INNER JOIN bikes b ON a.similar_bike_id = b.bike_id;
+INNER JOIN bikes b
+    ON a.similar_bike_id = b.bike_id;
 
 -- The key is aliasing the same table twice (a and b) so MySQL treats them as two separate tables.
 
@@ -296,3 +301,18 @@ Task 4 — Combined join + filter + aggregation:
 Write a query that shows each customer's name, city, and the total amount they've spent across all orders — calculated as
 SUM(b.price_inr * o.quantity). Only include customers who have actually placed orders. Sort by total spent descending.
 */
+
+SELECT
+	c.name,
+    c.city,
+    SUM(b.price_inr * o.quantity) AS Total_spent
+FROM orders AS o
+INNER JOIN customers AS c
+	ON o.customer_id = c.customer_id
+INNER JOIN bikes AS b
+	ON o.bike_id = b.bike_id
+GROUP BY
+	c.customer_id,
+    c.name,
+    c.city
+ORDER BY Total_spent DESC;
