@@ -316,3 +316,17 @@ GROUP BY
     c.name,
     c.city
 ORDER BY Total_spent DESC;
+
+
+
+
+
+/*
+DML — Modifying data
+
+You already know INSERT. Here are the other three:
+
+UPDATE — modify existing rows:
+
+Always use WHERE with UPDATE. Without it, every row in the table gets updated — one of the most painful mistakes in SQL.
+*/
