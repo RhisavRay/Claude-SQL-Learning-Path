@@ -330,3 +330,7 @@ UPDATE — modify existing rows:
 
 Always use WHERE with UPDATE. Without it, every row in the table gets updated — one of the most painful mistakes in SQL.
 */
+
+UPDATE bikes
+SET price_inr = 210000
+WHERE bike_id = 15;
