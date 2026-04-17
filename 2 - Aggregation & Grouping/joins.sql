@@ -334,3 +334,12 @@ Always use WHERE with UPDATE. Without it, every row in the table gets updated �
 UPDATE bikes
 SET price_inr = 210000
 WHERE bike_id = 15;
+
+
+
+
+/*
+DELETE — remove rows:
+
+Same warning — WHERE is mandatory in practice. DELETE without WHERE empties the entire table.
+*/
