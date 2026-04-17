@@ -267,3 +267,16 @@ Rare in analytics but useful for generating combinations, test data, or calendar
 SELECT c.name, b.model
 FROM customers c
 CROSS JOIN bikes b;
+
+
+
+
+/*
+SELF JOIN
+
+SELF JOIN is when a table joins to itself. Useful when rows in a table relate to other rows in the same table — like an employee table where each row
+has a manager_id pointing to another row in the same table.
+
+Our bikes dataset doesn't have a natural self-referencing structure, so I'll show you the pattern conceptually:
+*/
+
