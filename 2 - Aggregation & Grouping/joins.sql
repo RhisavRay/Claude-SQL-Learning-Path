@@ -358,3 +358,27 @@ Use it only when you genuinely want the table empty.
 */
 
 TRUNCATE TABLE bikes;
+
+
+
+
+/*
+Task 5 — DML:
+
+5a. The TVS Apache RR 310 just got a price revision — update its price_inr to ₹2,85,000 and set in_stock to TRUE. Use its bike_id.
+*/
+
+
+
+
+/*
+5b. A customer named Siddharth Roy has requested account deletion. Delete him from the customers table.
+*/
+
+
+
+
+/*
+5c. After both operations, write SELECT queries to confirm the changes actually took effect. Don't skip this — always verify DML operations.
+*/
+
