@@ -346,3 +346,13 @@ Same warning — WHERE is mandatory in practice. DELETE without WHERE empties th
 
 DELETE FROM bikes
 WHERE bike_id = 21;
+
+
+
+
+/*
+TRUNCATE — wipe an entire table instantly:
+
+Faster than DELETE with no WHERE because it doesn't log individual row deletions. But it can't be rolled back in most cases and doesn't fire triggers.
+Use it only when you genuinely want the table empty.
+*/
