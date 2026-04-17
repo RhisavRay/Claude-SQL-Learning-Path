@@ -280,3 +280,9 @@ has a manager_id pointing to another row in the same table.
 Our bikes dataset doesn't have a natural self-referencing structure, so I'll show you the pattern conceptually:
 */
 
+-- If bikes had a 'similar_bike_id' column pointing to another bike:
+SELECT a.model AS bike, b.model AS similar_to
+FROM bikes a
+INNER JOIN bikes b ON a.similar_bike_id = b.bike_id;
+
+-- The key is aliasing the same table twice (a and b) so MySQL treats them as two separate tables.
