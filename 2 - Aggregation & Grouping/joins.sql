@@ -286,3 +286,13 @@ FROM bikes a
 INNER JOIN bikes b ON a.similar_bike_id = b.bike_id;
 
 -- The key is aliasing the same table twice (a and b) so MySQL treats them as two separate tables.
+
+
+
+
+/*
+Task 4 — Combined join + filter + aggregation:
+
+Write a query that shows each customer's name, city, and the total amount they've spent across all orders — calculated as
+SUM(b.price_inr * o.quantity). Only include customers who have actually placed orders. Sort by total spent descending.
+*/
