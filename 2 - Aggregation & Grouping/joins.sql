@@ -305,7 +305,7 @@ SUM(b.price_inr * o.quantity). Only include customers who have actually placed o
 SELECT
 	c.name,
     c.city,
-    SUM(b.price_inr * o.quantity) AS Total_spent
+    SUM(b.price_inr * o.quantity * (1 - o.discount / 100)) AS Total_spent
 FROM orders AS o
 INNER JOIN customers AS c
 	ON o.customer_id = c.customer_id
