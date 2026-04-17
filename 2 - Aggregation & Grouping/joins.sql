@@ -343,3 +343,6 @@ DELETE — remove rows:
 
 Same warning — WHERE is mandatory in practice. DELETE without WHERE empties the entire table.
 */
+
+DELETE FROM bikes
+WHERE bike_id = 21;
