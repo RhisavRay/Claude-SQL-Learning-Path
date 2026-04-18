@@ -33,7 +33,14 @@ GROUP BY
 Q3. Write a query that returns all bikes that have never been ordered. Show brand, model, and type.
 */
 
-
+SELECT
+	b.brand,
+    b.model,
+    b.type
+FROM bikes AS b
+LEFT JOIN orders AS o
+	ON b.bike_id = o.bike_id
+WHERE o.order_id IS Null;
 
 
 /*
