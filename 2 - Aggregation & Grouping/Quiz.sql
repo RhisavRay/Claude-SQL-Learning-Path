@@ -3,7 +3,12 @@ Q1. Write a query that returns each city from the customers table along with the
 1 customer.
 */
 
-
+SELECT
+	city,
+    COUNT(city) AS No_of_people
+FROM customers
+GROUP BY city
+HAVING No_of_people > 1;
 
 
 /*
