@@ -71,6 +71,17 @@ WHERE brand = 'KTM' and model = '250 Duke';
 INSERT INTO orders VALUES
 (16, 9, 4, '2026-04-18', 1, 0.00);
 
+-- *** An alternative solution ***
+
+INSERT INTO orders VALUES (
+    16,
+    (SELECT customer_id FROM customers WHERE name = 'Vikram Singh'),
+    (SELECT bike_id FROM bikes WHERE brand = 'KTM' AND model = '250 Duke'),
+    '2026-04-18',
+    1,
+    0.00
+);
+
 
 /*
 Q5. Without running it — what is wrong with this query, and what would you change?
