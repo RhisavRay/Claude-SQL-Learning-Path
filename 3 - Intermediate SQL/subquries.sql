@@ -86,3 +86,21 @@ HAVING avg_price > 400000;
 Both work here. Derived tables become essential when your filtering logic is more complex than what HAVING can express — for example, when you need
 to filter on a value computed from an already-aggregated result.
 */
+
+
+
+
+/*
+Task 1 — Scalar and derived table subqueries:
+
+1a. Write a query that returns the brand, model, and price_inr of all bikes that cost more than the average price of bikes in their own type category.
+(Hint: this needs a correlated subquery or a derived table — think about which approach feels more natural first.)
+*/
+
+
+
+
+/*
+1b. Using a derived table, find the top 3 brands by average price, then from that result show only brands where the average exceeds ₹4,00,000.
+*/
+
