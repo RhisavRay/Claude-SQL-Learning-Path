@@ -106,3 +106,54 @@ SELECT brand, COUNT(*) as total
 FROM bikes
 GROUP BY brand
 HAVING total > 2;
+
+
+
+
+
+/*
+The complete SQL execution order
+
+There are two orders to keep in mind — the order you write a query, and the order MySQL executes it.
+
+The order you write it:
+
+SELECT       -- 1
+FROM         -- 2
+JOIN         -- 3
+WHERE        -- 4
+GROUP BY     -- 5
+HAVING       -- 6
+ORDER BY     -- 7
+LIMIT        -- 8
+
+The order MySQL executes it:
+
+FROM         -- 1. which table(s) am I working with?
+JOIN         -- 2. combine tables, build the full working dataset
+WHERE        -- 3. filter individual rows before any grouping
+GROUP BY     -- 4. collapse rows into groups
+HAVING       -- 5. filter groups based on aggregate results
+SELECT       -- 6. compute the columns and expressions to return
+ORDER BY     -- 7. sort the result
+LIMIT        -- 8. cut to the requested number of rows
+
+
+Why this matters practically — four rules that flow directly from this order:
+
+1. Rule 1 — WHERE can't use SELECT aliases
+    SELECT price_inr * 0.9 AS discounted — you can't then say WHERE discounted < 200000 because WHERE runs at step 3, before SELECT computes
+    discounted at step 6. You'd have to repeat the expression: WHERE price_inr * 0.9 < 200000.
+
+2. Rule 2 — HAVING can use SELECT aliases in MySQL
+    HAVING total > 2 works in MySQL even though HAVING runs at step 5 and SELECT runs at step 6. MySQL makes a special exception here — it resolves
+    SELECT aliases early for HAVING. This is MySQL-specific behaviour and won't work in PostgreSQL.
+
+3. Rule 3 — WHERE filters rows, HAVING filters groups
+    WHERE in_stock = TRUE removes out-of-stock rows before grouping. HAVING COUNT(*) > 2 removes groups after counting. Putting aggregate conditions
+    in WHERE fails because aggregation hasn't happened yet at step 3.
+
+4. Rule 4 — ORDER BY can use SELECT aliases everywhere
+    ORDER BY Total_spent DESC works because ORDER BY runs at step 7, after SELECT at step 6 has already computed Total_spent. This one is safe across
+    all databases.
+*/
