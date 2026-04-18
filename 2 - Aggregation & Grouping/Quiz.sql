@@ -55,7 +55,21 @@ Q4. We need to add a new order to the system:
 Write the INSERT — but look up the correct customer_id and bike_id from the data yourself rather than hardcoding from memory.
 */
 
+SELECT
+	customer_id,
+    name
+FROM customers
+WHERE name = 'Vikram Singh';
 
+SELECT
+	bike_id,
+    brand,
+    model
+FROM bikes
+WHERE brand = 'KTM' and model = '250 Duke';
+
+INSERT INTO orders VALUES
+(16, 9, 4, '2026-04-18', 1, 0.00);
 
 
 /*
