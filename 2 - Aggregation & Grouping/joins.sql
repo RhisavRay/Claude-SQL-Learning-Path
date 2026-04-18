@@ -381,9 +381,3 @@ WHERE bike_id = 16;
 
 DELETE FROM customers
 WHERE name = 'Siddharth Roy';
-
-
-/*
-5c. After both operations, write SELECT queries to confirm the changes actually took effect. Don't skip this — always verify DML operations.
-*/
-
