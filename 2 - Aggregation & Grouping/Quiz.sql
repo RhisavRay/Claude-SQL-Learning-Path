@@ -16,7 +16,17 @@ Q2. Write a query showing each customer's name and the most expensive bike they'
 placed at least one order.
 */
 
-
+SELECT
+	c.name,
+    MAX(b.price_inr) AS Costliest_Bike
+FROM orders AS o
+INNER JOIN customers AS c
+	ON c.customer_id = o.customer_id
+INNER JOIN bikes AS b
+	ON b.bike_id = o.bike_id
+GROUP BY
+	o.customer_id,
+    c.name;
 
 
 /*
