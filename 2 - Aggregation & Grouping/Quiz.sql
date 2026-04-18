@@ -176,3 +176,13 @@ GROUP BY c.customer_id, c.name     -- step 4: one row per customer
 HAVING total_orders >= 1           -- step 5: only customers with orders
 ORDER BY total_spent DESC          -- step 7: highest spenders first
 LIMIT 5;                           -- step 8: top 5 only
+
+
+
+
+/*
+My question to Claude:
+
+What if I wanna filter out rows from each table that gets joined. Can seperate where clauses be used or is that an unnecessary ask and thats why it
+cannot be done, or is it a genuine drawback?
+*/
