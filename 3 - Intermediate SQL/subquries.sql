@@ -97,7 +97,20 @@ Task 1 — Scalar and derived table subqueries:
 (Hint: this needs a correlated subquery or a derived table — think about which approach feels more natural first.)
 */
 
-
+SELECT
+    b.brand,
+    b.model,
+    b.price_inr
+FROM (
+    SELECT
+        type,
+        AVG(price_inr) AS Average_price
+    FROM bikes
+    GROUP BY type
+) AS a
+INNER JOIN bikes AS b
+    ON a.type = b.type
+    AND b.price_inr > a.Average_price;
 
 
 /*
