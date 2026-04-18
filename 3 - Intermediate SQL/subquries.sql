@@ -34,3 +34,21 @@ Row subquery         |   WHERE                   |        Single row, multiple c
 Table subquery       |   FROM                    |        A full result set (derived table)
 Correlated subquery  |   WHERE, SELECT           |        Depends on outer row — reruns per row
 */
+
+
+
+
+/*
+Scalar subquery — single value
+
+The simplest form. The subquery returns one number or string, used like a value.
+*/
+
+SELECT brand, model, price_inr
+FROM bikes
+WHERE price_inr > (SELECT AVG(price_inr) FROM bikes);
+
+/*
+The inner query SELECT AVG(price_inr) FROM bikes runs first, returns a single number (₹4,39,800 roughly), and the outer query then uses that number
+in its WHERE condition. You never had to know the average beforehand — the query figures it out dynamically.
+*/
