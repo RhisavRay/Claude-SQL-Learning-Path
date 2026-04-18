@@ -83,3 +83,15 @@ Q5. Without running it — what is wrong with this query, and what would you cha
 Explain the problem and write the corrected version.
 */
 
+/*
+There are 2 things that need to change:
+
+    1. It twill not be WHERE. It Would be HAVING
+    2. The HAVING statement will be after GROUP BY
+
+Something like this,
+*/
+SELECT brand, COUNT(*) as total
+FROM bikes
+GROUP BY brand
+HAVING total > 2;
