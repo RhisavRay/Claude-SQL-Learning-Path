@@ -186,3 +186,104 @@ My question to Claude:
 What if I wanna filter out rows from each table that gets joined. Can seperate where clauses be used or is that an unnecessary ask and thats why it
 cannot be done, or is it a genuine drawback?
 */
+
+
+/*
+Really good question — and the answer is nuanced.
+You cannot use multiple WHERE clauses in a single query. SQL simply doesn't allow it syntactically. One query, one WHERE. But this is not a drawback
+at all — it's by design, because you don't need it. Here's why.
+
+After a JOIN, it's all one table
+
+This is the key mental shift. Once MySQL executes your JOINs, it doesn't think in terms of "the customers table" and "the bikes table" anymore. It
+builds a single combined working dataset with all columns from all joined tables. Your WHERE clause then operates on that unified dataset.
+
+So filtering columns from different tables in one WHERE is completely natural:
+*/
+
+SELECT c.name, b.model, o.order_date
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN bikes b ON o.bike_id = b.bike_id
+WHERE c.city = 'Mumbai'
+AND b.type = 'Adventure'
+AND o.quantity >= 1;
+
+/*
+c.city comes from customers, b.type comes from bikes, o.quantity comes from orders — all filtered in one WHERE, because by the time WHERE runs,
+they're all columns in the same working dataset.
+
+Lets understand this with a few examples:
+*/
+
+/*
+Example 1 — filtering from two different tables
+
+Customers from Bangalore who ordered a Sport bike.
+*/
+
+SELECT c.name, c.city, b.model, b.type
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN bikes b ON o.bike_id = b.bike_id
+WHERE c.city = 'Bangalore'
+AND b.type = 'Sport';
+
+/*
+No need for two WHERE clauses — one WHERE handles both filters cleanly because both c.city and b.type exist as columns in the joined dataset.
+*/
+
+/*
+Example 2 — filtering with a join condition AND a row filter
+
+All in-stock bikes priced under ₹3,00,000 that have actually been ordered.
+*/
+
+SELECT b.brand, b.model, b.price_inr, o.order_date
+FROM bikes b
+INNER JOIN orders o ON b.bike_id = o.bike_id
+WHERE b.price_inr < 300000
+AND b.in_stock = TRUE;
+
+/*
+Again — b.price_inr and b.in_stock are both from bikes, sitting right next to o.order_date from orders in the same working dataset after the JOIN.
+*/
+
+
+
+
+
+/*
+The one case where table-level filtering DOES have a separate mechanism
+
+There is a scenario where you might want to filter rows from a specific table before the join happens rather than after. That's done using a condition
+directly in the ON clause or a subquery — and it matters specifically with LEFT JOINs.
+
+Compare these two:
+*/
+
+-- Filter AFTER join (WHERE): removes unmatched rows entirely
+SELECT c.name, o.order_id
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_date >= '2023-10-01';
+*/
+
+/*
+This loses customers with no orders — the WHERE filters out NULL order_dates, effectively turning your LEFT JOIN into an INNER JOIN.
+*/
+
+-- Filter INSIDE JOIN (ON): filters orders before joining, keeps all customers
+SELECT c.name, o.order_id
+FROM customers c
+LEFT JOIN orders o 
+    ON c.customer_id = o.customer_id
+    AND o.order_date >= '2023-10-01';
+
+/*
+This keeps all customers — those with no qualifying orders just show NULL in order_id. The date filter applies only to which orders get matched, not
+which customers survive.
+
+This is the one genuine nuance — with INNER JOINs, WHERE and ON conditions are equivalent in result. With LEFT JOINs, they are not. WHERE filters the
+final result; ON conditions filter what gets matched during the join itself.
+*/
