@@ -104,3 +104,14 @@ Task 1 — Scalar and derived table subqueries:
 1b. Using a derived table, find the top 3 brands by average price, then from that result show only brands where the average exceeds ₹4,00,000.
 */
 
+SELECT *
+FROM (
+    SELECT
+        brand,
+        AVG(price_inr) AS Average_price
+    FROM bikes
+    GROUP BY brand
+    ORDER BY Average_price DESC
+    LIMIT 3
+) AS Top_3_average_price
+WHERE Average_price > 400000;
