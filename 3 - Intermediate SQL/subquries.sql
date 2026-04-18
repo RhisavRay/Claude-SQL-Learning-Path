@@ -41,7 +41,7 @@ Correlated subquery  |   WHERE, SELECT           |        Depends on outer row �
 /*
 Scalar subquery — single value
 
-The simplest form. The subquery returns one number or string, used like a value.
+The simplest form. The subquery returns one number or string, used like a value:
 */
 
 SELECT brand, model, price_inr
@@ -51,4 +51,38 @@ WHERE price_inr > (SELECT AVG(price_inr) FROM bikes);
 /*
 The inner query SELECT AVG(price_inr) FROM bikes runs first, returns a single number (₹4,39,800 roughly), and the outer query then uses that number
 in its WHERE condition. You never had to know the average beforehand — the query figures it out dynamically.
+*/
+
+
+
+
+/*
+Derived table — subquery in FROM
+
+A subquery in the FROM clause acts as a temporary table:
+*/
+
+SELECT brand, avg_price
+FROM (
+    SELECT brand, AVG(price_inr) AS avg_price
+    FROM bikes
+    GROUP BY brand
+) AS brand_averages
+WHERE avg_price > 400000;
+
+/*
+The inner query builds a summarised table of brand averages. The outer query then filters that summary. Notice the alias brand_averages after the
+closing parenthesis — derived tables must always be aliased in MySQL, otherwise you get a syntax error.
+
+You could ask — why not just use HAVING for this? You could:
+*/
+
+SELECT brand, AVG(price_inr) AS avg_price
+FROM bikes
+GROUP BY brand
+HAVING avg_price > 400000;
+
+/*
+Both work here. Derived tables become essential when your filtering logic is more complex than what HAVING can express — for example, when you need
+to filter on a value computed from an already-aggregated result.
 */
