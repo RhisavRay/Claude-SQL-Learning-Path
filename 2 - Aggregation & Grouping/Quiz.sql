@@ -157,3 +157,22 @@ Why this matters practically — four rules that flow directly from this order:
     ORDER BY Total_spent DESC works because ORDER BY runs at step 7, after SELECT at step 6 has already computed Total_spent. This one is safe across
     all databases.
 */
+
+
+
+
+-- A complete query using every clause, annotated:
+SELECT                              -- step 6: compute output columns
+    c.name,
+    COUNT(o.order_id) AS total_orders,
+    SUM(b.price_inr) AS total_spent
+FROM customers c                    -- step 1: start with customers
+INNER JOIN orders o                 -- step 2: bring in orders
+    ON c.customer_id = o.customer_id
+INNER JOIN bikes b                  -- step 2: bring in bikes
+    ON o.bike_id = b.bike_id
+WHERE b.type = 'Naked'             -- step 3: only Naked bike orders
+GROUP BY c.customer_id, c.name     -- step 4: one row per customer
+HAVING total_orders >= 1           -- step 5: only customers with orders
+ORDER BY total_spent DESC          -- step 7: highest spenders first
+LIMIT 5;                           -- step 8: top 5 only
