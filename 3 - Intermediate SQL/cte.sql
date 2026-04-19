@@ -54,6 +54,27 @@ Task 3 — CTEs:
 3a. Rewrite the 1a solution (bikes priced above their type's average) using a CTE instead of a derived table.
 */
 
+WITH Bikes AS (
+    SELECT
+        brand,
+        model,
+        type,
+        price_inr
+    FROM bikes b1
+    WHERE price_inr > (
+        SELECT
+            type,
+            AVG(price_inr) AS Average_price
+        FROM bikes b2
+        WHERE b1.type = b2.type
+    )
+)
+SELECT
+    brand,
+    model,
+    type,
+    price_inr
+FROM Bikes
 
 
 
