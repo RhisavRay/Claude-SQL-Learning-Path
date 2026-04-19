@@ -130,6 +130,24 @@ WHERE b.price_inr > (
 );
 
 /*
+Notice what's happening here. The subquery references b.type from the outer query. This means the subquery doesn't run once — it runs once per row of
+the outer query. For each bike, it asks "what is the average price of bikes that share my type?" and compares against that.
+
+This is a correlated subquery — it's correlated to the outer query because it depends on the current outer row to execute.
+
+Derived table vs correlated subquery — when to use which:
+
+             |   DERIVED TABLE + JOIN                                 |   CORRELATED SUBQUERY
+------------------------------------------------------------------------------------------------------
+Runs         |   Inner query once, then join                          |   Inner query once per outer row
+Performance  |   Better on large datasets                             |   Can be slow on large tables
+Readability  |   More explicit                                        |   More concise
+Use when     |   You need the aggregated data for other purposes too  |   Simple per-row comparison
+
+For DA work at interview or on moderate datasets, either is fine. On millions of rows, the derived table approach is generally faster.
+*/
+
+/*
 1b. Using a derived table, find the top 3 brands by average price, then from that result show only brands where the average exceeds ₹4,00,000.
 */
 
@@ -144,3 +162,8 @@ FROM (
     LIMIT 3
 ) AS Top_3_average_price
 WHERE Average_price > 400000;
+
+
+
+
+
