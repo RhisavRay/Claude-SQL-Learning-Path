@@ -44,3 +44,23 @@ cte_two AS (
     SELECT ... FROM cte_one ...  -- can reference previous CTEs
 )
 SELECT * FROM cte_two;
+
+
+
+
+/*
+Task 3 — CTEs:
+
+3a. Rewrite the 1a solution (bikes priced above their type's average) using a CTE instead of a derived table.
+*/
+
+
+
+
+/*
+3b. Write a query using two CTEs that:
+    First CTE: calculates each customer's total spend (using the discount formula from earlier)
+    Second CTE: calculates the average total spend across all customers
+    Final query: returns customers whose total spend is above the average
+*/
+
