@@ -112,6 +112,22 @@ INNER JOIN bikes AS b
     ON a.type = b.type
     AND b.price_inr > a.Average_price;
 
+/*
+Now lets see the correlated subquery approach to this same problem — because it's a fundamentally different way of thinking and you'll see both in
+real codebases.
+*/
+
+SELECT
+    b.brand,
+    b.model,
+    b.type,
+    b.price_inr
+FROM bikes b
+WHERE b.price_inr > (
+    SELECT AVG(b2.price_inr)
+    FROM bikes b2
+    WHERE b2.type = b.type
+);
 
 /*
 1b. Using a derived table, find the top 3 brands by average price, then from that result show only brands where the average exceeds ₹4,00,000.
