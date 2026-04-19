@@ -63,7 +63,6 @@ WITH Bikes AS (
     FROM bikes b1
     WHERE price_inr > (
         SELECT
-            type,
             AVG(price_inr) AS Average_price
         FROM bikes b2
         WHERE b1.type = b2.type
@@ -114,3 +113,26 @@ INNER JOIN Type_averages t
     Final query: returns customers whose total spend is above the average
 */
 
+WITH
+Customer_Average AS (
+    SELECT
+        c.name,
+        c.city,
+        SUM(b.price_inr * o.quantity * (1 - o.discount / 100)) AS Total_spent
+    FROM orders AS o
+    INNER JOIN customers AS c
+        ON o.customer_id = c.customer_id
+    INNER JOIN bikes AS b
+        ON o.bike_id = b.bike_id
+    GROUP BY
+        c.name,
+        c.city
+),
+Total_average AS (
+    SELECT AVG(Total_spent) Average_spent
+    FROM Customer_Average
+)
+SELECT ca.name
+FROM Customer_Average ca
+CROSS JOIN Total_average ta
+WHERE ca.Total_spent > ta.Average_spent;
