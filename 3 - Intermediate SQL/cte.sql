@@ -25,3 +25,22 @@ WITH brand_averages AS (
 SELECT brand, avg_price
 FROM brand_averages
 WHERE avg_price > 400000;
+
+-- Same result. The CTE version reads top to bottom like a story — first define what brand_averages is, then query it.
+
+
+
+
+
+/*
+Multiple CTEs chain with commas:
+*/
+
+WITH 
+cte_one AS (
+    SELECT ...
+),
+cte_two AS (
+    SELECT ... FROM cte_one ...  -- can reference previous CTEs
+)
+SELECT * FROM cte_two;
