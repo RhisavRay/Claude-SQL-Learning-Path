@@ -219,3 +219,20 @@ WHERE NOT EXISTS (
     FROM orders AS o
     WHERE b.bike_id = o.bike_id
 );
+
+
+
+
+
+/*
+EXISTS vs LEFT JOIN + IS NULL — which should you use?
+
+Both are correct and common. The practical difference:
+
+    EXISTS reads more like English — "give me bikes where there exists no order" — and is often clearer in intent
+
+    LEFT JOIN + IS NULL is more familiar to people coming from a joins-first background and can be easier to extend if you need columns from the
+    joined table
+
+    On large datasets, modern MySQL optimises both to roughly the same execution plan, so performance is rarely the deciding factor
+*/
