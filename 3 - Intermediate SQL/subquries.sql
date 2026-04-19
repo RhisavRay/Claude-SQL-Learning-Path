@@ -185,3 +185,21 @@ WHERE EXISTS (
 /*
 SELECT 1 is conventional here — EXISTS only checks if a row exists, so the actual selected value is irrelevant.
 */
+
+
+
+
+/*
+Task 2
+
+2a. Write a query using EXISTS that returns all customers who have placed at least one order.
+*/
+
+
+
+
+/*
+2b. Write a query using NOT EXISTS that returns all bikes that have never been ordered. You solved this earlier with LEFT JOIN + IS NULL — this is
+the alternative approach. Both are valid; compare the two mentally.
+*/
+
