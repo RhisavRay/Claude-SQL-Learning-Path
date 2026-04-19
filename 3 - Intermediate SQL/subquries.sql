@@ -195,11 +195,27 @@ Task 2
 2a. Write a query using EXISTS that returns all customers who have placed at least one order.
 */
 
-
+SELECT
+    name
+FROM customers AS c
+WHERE EXISTS (
+    SELECT  1
+    FROM orders AS o
+    WHERE c.customer_id = o.customer_id
+);
 
 
 /*
 2b. Write a query using NOT EXISTS that returns all bikes that have never been ordered. You solved this earlier with LEFT JOIN + IS NULL — this is
-the alternative approach. Both are valid; compare the two mentally.
+the alternative approach. Both are valid. Compare the two mentally.
 */
 
+SELECT
+    brand,
+    model
+FROM bikes AS b
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM orders AS o
+    WHERE b.bike_id = o.bike_id
+);
