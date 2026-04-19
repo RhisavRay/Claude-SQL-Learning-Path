@@ -74,7 +74,36 @@ SELECT
     model,
     type,
     price_inr
-FROM Bikes
+FROM Bikes;
+
+-- Now using multiple CTEs. Basically trying to emulate the JOIN solution I created
+
+WITH
+Type_averages AS (
+    SELECT
+        type,
+        AVG(price_inr) AS Average_price
+    FROM bikes
+    GROUP BY type
+),
+Bikes AS (
+    SELECT
+        brand,
+        model,
+        type,
+        price_inr
+    FROM bikes
+)
+SELECT
+    b.brand,
+    b.model,
+    b.type,
+    b.price_inr
+FROM Bikes b
+INNER JOIN Type_averages t
+    ON
+        b.type = t.type
+        AND b.price_inr > t.Average_price;
 
 
 
