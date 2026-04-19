@@ -167,3 +167,21 @@ WHERE Average_price > 400000;
 
 
 
+/*
+EXISTS and correlated subqueries:
+
+EXISTS is a special form of correlated subquery that just checks whether the inner query returns any rows at all — it doesn't care about the actual
+values, just presence or absence.
+*/
+
+-- Bikes that have been ordered at least once
+SELECT b.brand, b.model
+FROM bikes b
+WHERE EXISTS (
+    SELECT 1 FROM orders o
+    WHERE o.bike_id = b.bike_id
+);
+
+/*
+SELECT 1 is conventional here — EXISTS only checks if a row exists, so the actual selected value is irrelevant.
+*/
