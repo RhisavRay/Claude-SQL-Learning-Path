@@ -76,3 +76,9 @@ FLOOR(n)                 |   Round down to nearest integer
 ABS(n)                   |   Absolute value
 MOD(n, d)                |   Remainder after division
 */
+
+SELECT 
+    model,
+    price_inr,
+    ROUND(price_inr / 83.5, 2) AS price_usd  -- rough INR to USD
+FROM bikes;
