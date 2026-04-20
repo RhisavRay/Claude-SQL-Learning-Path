@@ -105,3 +105,16 @@ SELECT
         ELSE 'Superpremium'
     END AS price_segment
 FROM bikes;
+
+
+
+
+
+/*
+COALESCE is useful whenever you have nullable columns and want a fallback value instead of NULL in your output.
+*/
+
+SELECT 
+    model,
+    COALESCE(price_inr, 0) AS price  -- replace NULL with 0
+FROM bikes;
