@@ -152,3 +152,42 @@ output.
 CAST(price_inr AS DECIMAL(10,2))
 CAST('2023-01-15' AS DATE)
 CONVERT(engine_cc, CHAR)  -- number to string
+
+
+
+
+
+/*
+What is the difference between CAST and CONVERT?
+
+CAST is the SQL standard syntax, works across all major databases:
+*/
+
+CAST(price_inr AS DECIMAL(10,2))
+CAST(engine_cc AS CHAR)
+
+/*
+CONVERT is MySQL-specific and has two different syntaxes:
+*/
+
+-- Type conversion (similar to CAST):
+CONVERT(price_inr, DECIMAL(10,2))
+
+-- Character set conversion (unique to CONVERT):
+CONVERT(name USING utf8mb4)
+
+/*
+That second form — converting character sets — is something only CONVERT can do. CAST can't do it.
+
+Practical rule for you:
+
+Situation                                         |  Use
+-------------------------------------------------------------------------------------
+Converting data types                             |  Either — CAST is more portable
+Converting character sets                         |  CONVERT only
+Writing code that might run on PostgreSQL later   |  CAST — it's the standard
+Working purely in MySQL                           |  Either works
+
+In DA work you'll almost always be doing type conversion, not character set conversion — so CAST is the safer default habit since it travels across
+databases. Most experienced SQL writers default to CAST and only reach for CONVERT when they specifically need the character set form.
+*/
