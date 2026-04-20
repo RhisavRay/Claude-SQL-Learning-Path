@@ -252,3 +252,7 @@ FROM bikes;
 5d. Using COALESCE, write a query that returns all bikes with their model and price_inr — but where price_inr is NULL, show 0 instead.
 */
 
+SELECT
+    model,
+    COALESCE(price_inr, 0)
+FROM bikes;
