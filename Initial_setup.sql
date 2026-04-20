@@ -84,3 +84,9 @@ INSERT INTO orders VALUES
 (13, 2,  19, '2023-12-05', 1, 3.50),
 (14, 7,  20, '2023-12-18', 1, 0.00),
 (15, 5,  6,  '2024-01-09', 1, 0.00);
+
+INSERT INTO bikes VALUES (21, 'Harley-Davidson', 'X440', 'Cruiser', 440, NULL, 2023, TRUE);
+
+INSERT INTO customers VALUES 
+(11, 'Siddharth Roy', 'Kolkata', 24, '2024-01-15'),
+(12, 'Meera Pillai',  'Kochi',   29, '2024-02-10');
