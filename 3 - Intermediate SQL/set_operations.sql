@@ -42,3 +42,18 @@ MySQL 8.0 added native INTERSECT support — it didn't exist in MySQL 5.7, which
 SELECT city FROM customers
 INTERSECT
 SELECT city FROM suppliers;
+
+
+
+
+/*
+EXCEPT — what's in the first but not the second
+
+Returns rows from the first query that don't appear in the second.
+
+Also added natively in MySQL 8.0.
+*/
+
+SELECT city FROM customers
+EXCEPT
+SELECT city FROM blacklisted_cities;
