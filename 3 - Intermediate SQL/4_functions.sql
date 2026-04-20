@@ -226,6 +226,22 @@ SELECT
     END AS loyalty_tier
 FROM customers;
 
+-- Alternate Solution
+
+WITH membership AS (
+    SELECT
+        name,
+        DATEDIFF(CURDATE(), member_since) AS days
+    FROM customers
+)
+SELECT name, days,
+    CASE
+        WHEN days < 365 THEN 'New'
+        WHEN days < 1095 THEN 'Regular'
+        ELSE 'Loyal'
+    END AS loyalty_tier
+FROM membership;
+
 
 /*
 5c. Write a query showing each bike's model, price_inr, price_usd (converted at ₹83.5 per dollar, rounded to 2 decimal places), and a segment column:
