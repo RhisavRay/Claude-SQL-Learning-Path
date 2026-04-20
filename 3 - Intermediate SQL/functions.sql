@@ -93,3 +93,15 @@ CASE WHEN — conditional logic
 This is the most important function category in this section. CASE WHEN lets you add conditional logic directly inside a query — think of it as an
 if/else inside SQL.
 */
+
+SELECT 
+    brand,
+    model,
+    price_inr,
+    CASE 
+        WHEN price_inr < 200000 THEN 'Budget'
+        WHEN price_inr < 500000 THEN 'Mid-range'
+        WHEN price_inr < 1000000 THEN 'Premium'
+        ELSE 'Superpremium'
+    END AS price_segment
+FROM bikes;
