@@ -224,7 +224,7 @@ SELECT
         WHEN DATEDIFF(CURDATE(), member_since) < 1095 THEN 'Regular'
         ELSE 'Loyal'
     END AS loyalty_tier
-FROM customers
+FROM customers;
 
 
 /*
