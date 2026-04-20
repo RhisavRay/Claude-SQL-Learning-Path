@@ -104,7 +104,11 @@ Task 4 — Set operations:
 column called name. Use UNION. How many rows do you get, and why isn't it the total count of cities + brands?
 */
 
-
+SELECT city
+FROM customers
+UNION
+SELECT brand
+FROM bikes;
 
 
 /*
@@ -112,7 +116,36 @@ column called name. Use UNION. How many rows do you get, and why isn't it the to
 INTERSECT to find customers who satisfy both conditions. Show their name and city.
 */
 
-
+WITH
+B_or_M AS (
+    SELECT
+        name,
+        city
+    FROM customers
+    WHERE
+        city = 'Bangalore'
+        OR city = 'Mumbai'
+),
+More_than_1 AS (
+    SELECT
+        name,
+        city
+    FROM customers
+    WHERE (
+        SELECT COUNT(order_id)
+        FROM orders
+        WHERE orders.customer_id = customers.customer_id
+    ) > 1
+)
+SELECT
+    name,
+    city
+FROM B_or_M
+INTERSECT
+SELECT
+    name,
+    city
+FROM More_than_1;
 
 
 /*
