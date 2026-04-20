@@ -111,6 +111,8 @@ FROM bikes;
 
 
 /*
+COALESCE
+
 COALESCE is useful whenever you have nullable columns and want a fallback value instead of NULL in your output.
 */
 
@@ -118,3 +120,20 @@ SELECT
     model,
     COALESCE(price_inr, 0) AS price  -- replace NULL with 0
 FROM bikes;
+
+
+
+
+/*
+NULLIF
+
+Returns NULL if two values are equal, otherwise returns the first value:
+*/
+
+NULLIF(discount, 0)  -- returns NULL if discount is 0, else returns discount
+
+/*
+Less common but useful for avoiding division-by-zero errors:
+*/
+
+price_inr / NULLIF(engine_cc, 0)  -- safe division
