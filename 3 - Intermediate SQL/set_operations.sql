@@ -93,3 +93,30 @@ FROM bangalore_customers;
 /*
 Now you're intersecting two meaningfully computed sets — not just raw columns. This pattern comes up constantly in real analytical work.
 */
+
+
+
+
+/*
+Task 4 — Set operations:
+
+4a. Our marketing team wants a single list of all city values from the customers table and all brand values from the bikes table — combined into one
+column called name. Use UNION. How many rows do you get, and why isn't it the total count of cities + brands?
+*/
+
+
+
+
+/*
+4b. Use two CTEs — one for customers who are from 'Bangalore' or 'Mumbai', another for customers who have placed more than one order — then use
+INTERSECT to find customers who satisfy both conditions. Show their name and city.
+*/
+
+
+
+
+/*
+4c. Using EXCEPT, find bike types that exist in the bikes table but have no corresponding orders in the orders table. (Hint: think about what column
+links bikes to orders, and what you need to select from each side.)
+*/
+
