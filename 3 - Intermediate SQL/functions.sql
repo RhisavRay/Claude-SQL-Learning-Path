@@ -53,3 +53,11 @@ DATEDIFF(d1, d2)             |   Days between two dates
 DATE_FORMAT(d, fmt)          |   Format a date as a string
 TIMESTAMPDIFF(unit, d1, d2)  |   Difference in specified unit
 */
+
+-- How long has each customer been a member?
+SELECT 
+    name,
+    member_since,
+    DATEDIFF(CURDATE(), member_since) AS days_as_member,
+    TIMESTAMPDIFF(YEAR, member_since, CURDATE()) AS years_as_member
+FROM customers;
