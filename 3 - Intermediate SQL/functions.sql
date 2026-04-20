@@ -191,3 +191,44 @@ Working purely in MySQL                           |  Either works
 In DA work you'll almost always be doing type conversion, not character set conversion — so CAST is the safer default habit since it travels across
 databases. Most experienced SQL writers default to CAST and only reach for CONVERT when they specifically need the character set form.
 */
+
+
+
+
+/*
+Task 5 — Functions:
+
+5a. Write a query that returns a single column called bike_summary containing a formatted string for each bike, like:
+"Royal Enfield - Classic 350 (Cruiser) | ₹192000"
+Use CONCAT to build this. All text should be in the exact format shown.
+*/
+
+
+
+
+/*
+5b. Write a query that returns each customer's name, how many days they've been a member as of today, and a loyalty_tier column using CASE WHEN:
+
+Less than 365 days → 'New'
+365 to 1095 days (1–3 years) → 'Regular'
+More than 1095 days → 'Loyal'
+*/
+
+
+
+
+/*
+5c. Write a query showing each bike's model, price_inr, price_usd (converted at ₹83.5 per dollar, rounded to 2 decimal places), and a segment column:
+
+Under ₹2,00,000 → 'Budget'
+₹2,00,000 to ₹5,00,000 → 'Mid-range'
+Above ₹5,00,000 → 'Premium'
+*/
+
+
+
+
+/*
+5d. Using COALESCE, write a query that returns all bikes with their model and price_inr — but where price_inr is NULL, show 0 instead.
+*/
+
