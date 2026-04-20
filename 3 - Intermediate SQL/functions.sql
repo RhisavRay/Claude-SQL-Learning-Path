@@ -36,3 +36,20 @@ SELECT
 FROM customers c
 JOIN orders o ON c.customer_id = o.customer_id
 JOIN bikes b ON o.bike_id = b.bike_id;
+
+
+
+
+
+/*
+Date & time functions
+
+Function                     |   What it does
+---------------------------------------------------------------
+CURDATE()                    |   Today's date
+NOW()                        |   Current date and time
+YEAR(d) / MONTH(d) / DAY(d)  |   Extract parts of a date
+DATEDIFF(d1, d2)             |   Days between two dates
+DATE_FORMAT(d, fmt)          |   Format a date as a string
+TIMESTAMPDIFF(unit, d1, d2)  |   Difference in specified unit
+*/
