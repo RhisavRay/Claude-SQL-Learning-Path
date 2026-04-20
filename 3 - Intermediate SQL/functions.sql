@@ -27,3 +27,12 @@ LIKE                            |        Pattern matching (you know this one)
 
 Quick examples on our data:
 */
+
+-- Full name in uppercase, and model with brand prefixed
+SELECT 
+    UPPER(name) AS name_upper,
+    CONCAT(brand, ' ', model) AS full_name,
+    LENGTH(model) AS model_length
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN bikes b ON o.bike_id = b.bike_id;
