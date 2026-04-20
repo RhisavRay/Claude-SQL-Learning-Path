@@ -164,3 +164,13 @@ WHERE EXISTS (
     FROM orders o
     WHERE o.bike_id = b.bike_id
 );
+
+-- Alternate solution
+
+SELECT DISTINCT type
+FROM bikes
+EXCEPT
+SELECT DISTINCT b.type
+FROM orders o
+INNER JOIN bikes b
+    ON b.bike_id = o.bike_id;
