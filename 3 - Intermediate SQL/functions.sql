@@ -235,7 +235,17 @@ Under ₹2,00,000 → 'Budget'
 Above ₹5,00,000 → 'Premium'
 */
 
-
+SELECT
+    model,
+    COALESCE(price_inr, 0.0),
+    ROUND(COALESCE(price_inr, 0) / 83.5, 2) AS price_usd,
+    CASE
+        WHEN price_inr < 200000 THEN 'Budget'
+        WHEN price_inr < 500000 THEN 'Mid-range'
+        WHEN price_inr >= 500000 THEN 'Premium'
+        ELSE 'Price is unavailable'
+    END AS segment
+FROM bikes;
 
 
 /*
