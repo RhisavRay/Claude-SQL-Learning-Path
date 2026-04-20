@@ -61,3 +61,18 @@ SELECT
     DATEDIFF(CURDATE(), member_since) AS days_as_member,
     TIMESTAMPDIFF(YEAR, member_since, CURDATE()) AS years_as_member
 FROM customers;
+
+
+
+
+/*
+Numeric functions
+
+Function                 |   What it does
+------------------------------------------------------------
+ROUND(n, decimals)       |   Round to N decimal places
+CEIL(n)                  |   Round up to nearest integer
+FLOOR(n)                 |   Round down to nearest integer
+ABS(n)                   |   Absolute value
+MOD(n, d)                |   Remainder after division
+*/
