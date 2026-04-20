@@ -82,3 +82,14 @@ SELECT
     price_inr,
     ROUND(price_inr / 83.5, 2) AS price_usd  -- rough INR to USD
 FROM bikes;
+
+
+
+
+
+/*
+CASE WHEN — conditional logic
+
+This is the most important function category in this section. CASE WHEN lets you add conditional logic directly inside a query — think of it as an
+if/else inside SQL.
+*/
