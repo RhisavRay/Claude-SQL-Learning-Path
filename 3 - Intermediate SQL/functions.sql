@@ -203,7 +203,9 @@ Task 5 — Functions:
 Use CONCAT to build this. All text should be in the exact format shown.
 */
 
-
+SELECT
+    CONCAT(brand, ' - ', model, ' (', type, ') | ', COALESCE(price_inr, 0)) AS Bike_details
+FROM bikes;
 
 
 /*
