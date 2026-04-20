@@ -137,3 +137,18 @@ Less common but useful for avoiding division-by-zero errors:
 */
 
 price_inr / NULLIF(engine_cc, 0)  -- safe division
+
+
+
+
+
+/*
+CAST and CONVERT
+
+Force a value from one data type to another. Most commonly needed when joining on columns that were stored as different types, or when formatting
+output.
+*/
+
+CAST(price_inr AS DECIMAL(10,2))
+CAST('2023-01-15' AS DATE)
+CONVERT(engine_cc, CHAR)  -- number to string
