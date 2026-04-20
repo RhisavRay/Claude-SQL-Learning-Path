@@ -153,3 +153,14 @@ FROM More_than_1;
 links bikes to orders, and what you need to select from each side.)
 */
 
+SELECT type
+FROM bikes
+GROUP BY type
+EXCEPT
+SELECT type
+FROM bikes b
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.bike_id = b.bike_id
+);
