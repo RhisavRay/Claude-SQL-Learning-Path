@@ -23,8 +23,22 @@ UNION ALL is faster because it skips the deduplication step. Use it when you kno
 -- All cities where we have customers OR where bikes are manufactured
 SELECT city AS location
 FROM customers
-
 UNION
-
 SELECT brand AS location
 FROM bikes;
+
+
+
+
+/*
+INTERSECT — what's in both
+
+Returns only rows that appear in both result sets.
+
+MySQL 8.0 added native INTERSECT support — it didn't exist in MySQL 5.7, which is another reason we upgraded.
+*/
+
+-- Hypothetical: cities that appear in both tables
+SELECT city FROM customers
+INTERSECT
+SELECT city FROM suppliers;
