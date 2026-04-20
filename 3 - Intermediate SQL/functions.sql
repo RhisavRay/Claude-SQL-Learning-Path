@@ -216,7 +216,15 @@ Less than 365 days → 'New'
 More than 1095 days → 'Loyal'
 */
 
-
+SELECT
+    name,
+    DATEDIFF(CURDATE(), member_since) as days_of_membership,
+    CASE
+        WHEN DATEDIFF(CURDATE(), member_since) < 365 THEN 'New'
+        WHEN DATEDIFF(CURDATE(), member_since) < 1095 THEN 'Regular'
+        ELSE 'Loyal'
+    END AS loyalty_tier
+FROM customers
 
 
 /*
