@@ -1,14 +1,16 @@
 /*
 Stage 3 Quiz
 
-Q1. Write a query using a scalar subquery that returns the model and price_inr of the single most expensive bike in the table. Do not use ORDER BY + LIMIT — use a subquery.
+Q1. Write a query using a scalar subquery that returns the model and price_inr of the single most expensive bike in the table. Do not use ORDER BY +
+LIMIT — use a subquery.
 */
 
 
 
 
 /*
-Q2. Using a CTE, find all customers who have spent more than ₹5,00,000 in total across all their orders (use the discount formula). Show their name, city, and total_spent.
+Q2. Using a CTE, find all customers who have spent more than ₹5,00,000 in total across all their orders (use the discount formula). Show their name,
+city, and total_spent.
 */
 
 
