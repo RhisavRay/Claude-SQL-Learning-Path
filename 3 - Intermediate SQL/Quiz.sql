@@ -24,7 +24,7 @@ WITH Final_expense AS (
     SELECT
         c.name,
         c.city,
-        SUM((o.quantity * b.price_inr) * (1 - o.discount)) as total_spent
+        SUM((o.quantity * b.price_inr) * (100 - o.discount)) as total_spent
     FROM orders o
     INNER JOIN customers c
         ON o.customer_id = c.customer_id
@@ -92,7 +92,7 @@ Q4. Without running it first — will this query work? If not, why, and what's t
 Explain your reasoning, then run it to verify.
 */
 
-
+-- Yes. This query will run and show the names of those customers who have placed more than one order with us
 
 
 /*
@@ -109,3 +109,34 @@ This requires combining a JOIN, LEFT JOIN, aggregation, DATEDIFF, CASE WHEN, and
 with no orders.
 */
 
+WITH Customer AS (
+    SELECT 
+        customer_id, 
+        name, 
+        city,
+        DATEDIFF(CURDATE(), member_since) as days_as_member
+    FROM customers
+),
+Totals AS (
+    SELECT 
+        c.customer_id,
+        COUNT(o.order_id) as total_orders,
+        COALESCE(SUM((o.quantity * b.price_inr) * (100 - o.discount) / 100.0), 0) as total_spent
+    FROM customers c
+    LEFT JOIN orders o ON c.customer_id = o.customer_id
+    LEFT JOIN bikes b ON o.bike_id = b.bike_id
+    GROUP BY c.customer_id
+)
+SELECT 
+    c.name,
+    c.city,
+    c.days_as_member,
+    CASE 
+        WHEN c.days_as_member < 365 THEN 'New'
+        WHEN c.days_as_member < 1095 THEN 'Regular'
+        ELSE 'Loyal'
+    END AS loyalty_tier,
+    t.total_orders,
+    t.total_spent
+FROM Customer c
+INNER JOIN Totals t ON c.customer_id = t.customer_id;
