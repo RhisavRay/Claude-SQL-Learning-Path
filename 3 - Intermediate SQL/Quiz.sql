@@ -24,7 +24,7 @@ WITH Final_expense AS (
     SELECT
         c.name,
         c.city,
-        SUM((o.quantity * b.price_inr) * (100 - o.discount)) as total_spent
+        COALESCE(SUM((o.quantity * b.price_inr) * (100 - o.discount) / 100.0), 0) as total_spent
     FROM orders o
     INNER JOIN customers c
         ON o.customer_id = c.customer_id
