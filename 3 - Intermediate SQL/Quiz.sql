@@ -20,7 +20,26 @@ Q2. Using a CTE, find all customers who have spent more than ₹5,00,000 in tota
 city, and total_spent.
 */
 
-
+WITH Final_expense AS (
+    SELECT
+        c.name,
+        c.city,
+        SUM((o.quantity * b.price_inr) * (1 - o.discount)) as total_spent
+    FROM orders o
+    INNER JOIN customers c
+        ON o.customer_id = c.customer_id
+    INNER JOIN bikes b
+        ON o.bike_id = b.bike_id
+    GROUP BY
+        c.name,
+        c.city
+    HAVING total_spent > 500000
+)
+SELECT
+    name,
+    city,
+    total_spent
+FROM Final_expense;
 
 
 /*
