@@ -5,7 +5,14 @@ Q1. Write a query using a scalar subquery that returns the model and price_inr o
 LIMIT — use a subquery.
 */
 
-
+SELECT
+    model,
+    price_inr
+FROM bikes
+WHERE price_inr = (
+    SELECT MAX(price_inr)
+    FROM bikes
+);
 
 
 /*
