@@ -55,7 +55,24 @@ Q3. Write a query that returns each bike's model, price_inr, and a value_rating 
 Sort by value_rating descending.
 */
 
-
+WITH value_proposition AS (
+    SELECT
+        model,
+        price_inr,
+        ROUND(engine_cc / NULLIF((price_inr / 100000), 0), 2) as value_rating
+    FROM bikes
+)
+SELECT
+    model,
+    price_inr,
+    value_rating,
+    CASE
+        WHEN value_rating > 1.5 THEN 'High value'
+        WHEN value_rating > 0.5 THEN 'Fair value'
+        ELSE 'Low value'
+    END AS verdict
+FROM value_proposition
+ORDER BY value_rating DESC;
 
 
 /*
