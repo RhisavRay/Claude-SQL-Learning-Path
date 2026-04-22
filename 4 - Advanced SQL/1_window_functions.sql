@@ -53,3 +53,16 @@ aggregates.
 
 No PARTITION BY — the entire result set is treated as one partition.
 */
+
+
+
+
+/*
+The window function families
+
+Family        |  Functions
+--------------------------------------------------------------
+Aggregate     |  SUM, AVG, COUNT, MIN, MAX — but over a window
+Ranking       |  ROW_NUMBER, RANK, DENSE_RANK, NTILE
+Navigation    |  LAG, LEAD, FIRST_VALUE, LAST_VALUE
+*/
