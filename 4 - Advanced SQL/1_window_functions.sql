@@ -86,3 +86,24 @@ FROM bikes;
 /*
 This shows each bike alongside its type's average, and how far above or below that average it sits. Impossible to do cleanly with GROUP BY alone.
 */
+
+
+
+
+/*
+Task 1 — Aggregate windows:
+
+1a. Write a query that shows every bike's brand, model, type, price_inr, and two additional columns:
+    
+    1. avg_type_price — average price of bikes in the same type
+    2. pct_of_type_avg — the bike's price as a percentage of its type's average, rounded to 1 decimal place. A bike at exactly the type average should
+    show 100.0.
+*/
+
+
+
+
+/*
+1b. Write a query that shows each order's order_id, customer_id, order_date, the bike's price_inr, and a running_total — the cumulative sum of price_inr ordered by order_date across all orders. This is your first running total — it requires ORDER BY inside OVER().
+*/
+
