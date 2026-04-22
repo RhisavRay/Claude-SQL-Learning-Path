@@ -100,7 +100,18 @@ Task 1 — Aggregate windows:
     show 100.0.
 */
 
-
+SELECT
+    brand,
+    model,
+    type,
+    COALESCE(price_inr, 0),
+    AVG(price_inr) OVER(
+        PARTITION BY type
+    ) AS avg_type_price,
+    ROUND(COALESCE(price_inr, 0) * 100 / AVG(price_inr) OVER(
+        PARTITION BY type
+    ), 1) AS pct_of_type_avg
+FROM bikes;
 
 
 /*
