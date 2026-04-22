@@ -66,3 +66,23 @@ Aggregate     |  SUM, AVG, COUNT, MIN, MAX — but over a window
 Ranking       |  ROW_NUMBER, RANK, DENSE_RANK, NTILE
 Navigation    |  LAG, LEAD, FIRST_VALUE, LAST_VALUE
 */
+
+
+
+
+/*
+Family 1 — Aggregate window functions
+*/
+
+SELECT 
+    brand,
+    model,
+    type,
+    price_inr,
+    AVG(price_inr) OVER (PARTITION BY type) AS avg_type_price,
+    price_inr - AVG(price_inr) OVER (PARTITION BY type) AS diff_from_avg
+FROM bikes;
+
+/*
+This shows each bike alongside its type's average, and how far above or below that average it sits. Impossible to do cleanly with GROUP BY alone.
+*/
