@@ -38,3 +38,18 @@ The second query returns all 21 bike rows, each with its own avg_type_price show
 
 The anatomy of a window function:
 */
+
+function_name() OVER (
+    PARTITION BY column    -- define the groups (optional)
+    ORDER BY column        -- define the order within groups (optional)
+    ROWS/RANGE ...         -- define the frame (optional, covered later)
+)
+
+/*
+PARTITION BY — divides rows into groups, like GROUP BY but without collapsing. Each partition is processed independently.
+
+ORDER BY inside OVER() — defines the order of rows within each partition. Required for ranking and running total functions, optional for pure
+aggregates.
+
+No PARTITION BY — the entire result set is treated as one partition.
+*/
