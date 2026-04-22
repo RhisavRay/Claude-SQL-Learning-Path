@@ -115,6 +115,18 @@ FROM bikes;
 
 
 /*
-1b. Write a query that shows each order's order_id, customer_id, order_date, the bike's price_inr, and a running_total — the cumulative sum of price_inr ordered by order_date across all orders. This is your first running total — it requires ORDER BY inside OVER().
+1b. Write a query that shows each order's order_id, customer_id, order_date, the bike's price_inr, and a running_total — the cumulative sum of
+price_inr ordered by order_date across all orders. This is your first running total — it requires ORDER BY inside OVER().
 */
 
+SELECT
+    o.order_id,
+    o.customer_id,
+    o.order_date,
+    b.price_inr
+    SUM(b.price_inr) OVER (
+        ORDER BY o.order_date
+    ) AS running_total
+FROM orders o
+INNER JOIN bikes b
+    ON o.bike_id = b.bike_id;
