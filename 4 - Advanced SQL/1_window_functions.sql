@@ -91,6 +91,17 @@ This shows each bike alongside its type's average, and how far above or below th
 
 
 /*
+All aggregate window functions with examples
+
+All five work the same way — swap the function, the behaviour changes, but the OVER() syntax is identical.
+*/
+
+
+
+
+
+
+/*
 Task 1 — Aggregate windows:
 
 1a. Write a query that shows every bike's brand, model, type, price_inr, and two additional columns:
@@ -123,7 +134,7 @@ SELECT
     o.order_id,
     o.customer_id,
     o.order_date,
-    b.price_inr
+    b.price_inr,
     SUM(b.price_inr) OVER (
         ORDER BY o.order_date
     ) AS running_total
