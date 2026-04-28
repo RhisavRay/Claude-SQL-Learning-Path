@@ -163,3 +163,36 @@ SELECT
 FROM orders o
 INNER JOIN bikes b
     ON o.bike_id = b.bike_id;
+
+
+
+
+/*
+All aggregate window functions with examples
+
+All five work the same way — swap the function, the behaviour changes, but the OVER() syntax is identical.
+*/
+
+SELECT
+    o.order_id,
+    o.order_date,
+    b.brand,
+    b.price_inr,
+
+    -- Running total: cumulative sum so far
+    SUM(b.price_inr) OVER (ORDER BY o.order_date) AS running_total,
+
+    -- Running count: how many orders placed so far
+    COUNT(o.order_id) OVER (ORDER BY o.order_date) AS running_count,
+
+    -- Running average: average price of all orders so far
+    ROUND(AVG(b.price_inr) OVER (ORDER BY o.order_date), 0) AS running_avg,
+
+    -- Running min: cheapest bike ordered so far
+    MIN(b.price_inr) OVER (ORDER BY o.order_date) AS running_min,
+
+    -- Running max: most expensive bike ordered so far
+    MAX(b.price_inr) OVER (ORDER BY o.order_date) AS running_max
+
+FROM orders o
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
