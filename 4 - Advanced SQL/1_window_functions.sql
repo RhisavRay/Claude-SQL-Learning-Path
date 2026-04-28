@@ -196,3 +196,13 @@ SELECT
 
 FROM orders o
 INNER JOIN bikes b ON o.bike_id = b.bike_id;
+
+/*
+Without ORDER BY inside OVER() — all five functions give a single constant value across every row (the grand total, grand average, etc.). The
+ORDER BY is what makes them accumulate rather than just broadcast.
+
+With PARTITION BY added — the accumulation resets per partition.
+*/
+
+SUM(b.price_inr) OVER (PARTITION BY o.customer_id ORDER BY o.order_date)
+-- This gives a running total per customer — each customer's accumulation starts fresh at their first order.
