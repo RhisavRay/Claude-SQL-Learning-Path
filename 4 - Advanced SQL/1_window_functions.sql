@@ -206,3 +206,15 @@ With PARTITION BY added — the accumulation resets per partition.
 
 SUM(b.price_inr) OVER (PARTITION BY o.customer_id ORDER BY o.order_date)
 -- This gives a running total per customer — each customer's accumulation starts fresh at their first order.
+
+
+
+
+/*
+Task 2 — Aggregate windows combined:
+
+Write a query that shows for each order:
+    order_id, order_date, customer name, bike model, price_inr
+    customer_running_total — running total of spend per customer, ordered by order_date
+    overall_running_total — running total across all orders, ordered by order_date
+*/
