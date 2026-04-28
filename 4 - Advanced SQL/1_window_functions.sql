@@ -218,3 +218,29 @@ Write a query that shows for each order:
     customer_running_total — running total of spend per customer, ordered by order_date
     overall_running_total — running total across all orders, ordered by order_date
 */
+
+SELECT
+    o.order_id,
+    o.order_date,
+    c.name,
+    b.model,
+    b.price_inr,
+    SUM((o.quantity * b.price_inr) * (100 - o.discount) / 100.0) OVER (
+        PARTITION BY c.name
+        ORDER BY o.order_date
+    ) AS customer_running_total,
+    SUM((o.quantity * b.price_inr) * (100 - o.discount) / 100.0) OVER (
+        ORDER BY o.order_date
+    ) AS overall_running_total
+FROM orders o
+INNER JOIN customers c
+    ON o.customer_id = c.customer_id
+INNER JOIN bikes b
+    ON o.bike_id = b.bike_id;
+
+
+
+
+/*
+
+*/
