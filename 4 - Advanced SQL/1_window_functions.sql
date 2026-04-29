@@ -306,7 +306,26 @@ type, brand, model, price_inr. (Hint: you'll need a CTE or subquery to filter ro
 WHERE.)
 */
 
-
+-- Using CTEs
+WITH Ordered_bikes AS (
+    SELECT
+        type,
+        brand,
+        model,
+        price_inr,
+        ROW_NUMBER() OVER (
+            PARTITION BY type
+            ORDER BY price_inr DESC
+        ) AS row_num
+    FROM bikes
+)
+SELECT
+    type,
+    brand,
+    model,
+    price_inr
+FROM Ordered_bikes
+WHERE row_num = 1;
 
 
 /*
