@@ -396,3 +396,10 @@ SELECT
     ) AS price_diff
 FROM orders o
 INNER JOIN bikes b ON o.bike_id = b.bike_id;
+
+/*
+This shows each order's price alongside the previous order's price and the difference between them. No self-join needed — the window function does it
+in one pass.
+
+LAG(col, 1) means "look 1 row back". LAG(col, 2) would look 2 rows back. The first row has no previous row, so LAG returns NULL there.
+*/
