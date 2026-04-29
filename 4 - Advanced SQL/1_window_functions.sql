@@ -363,3 +363,23 @@ SELECT
         ORDER BY price_inr
     ) AS quartile
 FROM bikes;
+
+
+
+
+/*
+Family 3 — Navigation functions
+
+These let you access values from other rows relative to the current row:
+
+Function         |   What it does
+--------------------------------------------------------------
+LAG(col, n)      |   Value from N rows before the current row
+LEAD(col, n)     |   Value from N rows after the current row
+FIRST_VALUE(col) |   First value in the window
+LAST_VALUE(col)  |   Last value in the window
+
+All require ORDER BY inside OVER() to define what "before" and "after" mean.
+
+Classic use case — period-over-period comparison:
+*/
