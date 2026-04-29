@@ -297,7 +297,8 @@ SELECT
     DENSE_RANK() OVER (
         ORDER BY price_inr DESC
     ) AS dense_rank_num
-FROM bikes;
+FROM bikes
+WHERE price_inr IS NOT Null;
 
 
 /*
