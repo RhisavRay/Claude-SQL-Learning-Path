@@ -421,3 +421,31 @@ SELECT
 FROM orders o
 INNER JOIN bikes b ON o.bike_id = b.bike_id;
 -- Last row has no next row, so LEAD returns NULL there.
+
+
+
+
+/*
+FIRST_VALUE and LAST_VALUE — boundaries of the window:
+*/
+
+SELECT
+    brand,
+    model,
+    type,
+    price_inr,
+    FIRST_VALUE(price_inr) OVER (
+        PARTITION BY type
+        ORDER BY price_inr
+    ) AS cheapest_in_type,
+    LAST_VALUE(price_inr) OVER (
+        PARTITION BY type
+        ORDER BY price_inr
+    ) AS most_expensive_in_type
+FROM bikes
+WHERE price_inr IS NOT NULL;
+
+/*
+FIRST_VALUE gives the first value in the ordered partition. LAST_VALUE gives the last — but there's a gotcha with LAST_VALUE involving window frames
+that we'll address when you hit it.
+*/
