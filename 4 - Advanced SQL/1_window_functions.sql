@@ -494,7 +494,8 @@ SELECT
     ) AS last_order
 FROM customers c
 INNER JOIN orders o
-    ON o.customer_id = c.customer_id;
+    ON o.customer_id = c.customer_id
+GROUP BY c.name;
 
 
 /*
@@ -502,3 +503,12 @@ INNER JOIN orders o
 type. Use LAG with PARTITION BY type ORDER BY price_inr DESC. Call the difference column premium_over_next.
 */
 
+SELECT
+    brand,
+    model,
+    price_inr,
+    price_inr - LAG(price_inr, 1) OVER(
+        PARTITION BY type
+        ORDER BY price_inr DESC
+    )
+FROM bikes;
