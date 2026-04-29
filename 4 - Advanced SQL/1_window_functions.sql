@@ -403,3 +403,20 @@ in one pass.
 
 LAG(col, 1) means "look 1 row back". LAG(col, 2) would look 2 rows back. The first row has no previous row, so LAG returns NULL there.
 */
+
+
+
+
+/*
+LEAD is the mirror — looking forward:
+*/
+
+SELECT
+    order_id,
+    order_date,
+    price_inr,
+    LEAD(price_inr, 1) OVER (
+        ORDER BY order_date
+    ) AS next_order_price
+FROM orders o
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
