@@ -242,5 +242,19 @@ INNER JOIN bikes b
 
 
 /*
+Family 2 — Ranking functions
 
+That wraps aggregate window functions. Next up: ranking functions — ROW_NUMBER, RANK, DENSE_RANK, NTILE. These are the ones you'll use constantly in
+DA work for "top N per group" queries and percentile analysis.
+
+Function      |  What it does
+--------------------------------------------------------------------------
+ROW_NUMBER()  |  Sequential numbering 1, 2, 3... — no ties, always unique
+RANK()        |  Ranking with gaps after ties — 1, 2, 2, 4
+DENSE_RANK()  |  Ranking without gaps — 1, 2, 2, 3
+NTILE(n)      |  Divides rows into N roughly equal buckets
+
+All require ORDER BY inside OVER() to define what you're ranking by.
+
+Example — ranking bikes by price within each type:
 */
