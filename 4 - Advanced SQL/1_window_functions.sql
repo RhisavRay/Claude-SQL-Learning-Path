@@ -258,3 +258,14 @@ All require ORDER BY inside OVER() to define what you're ranking by.
 
 Example — ranking bikes by price within each type:
 */
+
+SELECT
+    brand,
+    model,
+    type,
+    price_inr,
+    ROW_NUMBER() OVER (PARTITION BY type ORDER BY price_inr DESC) AS row_num,
+    RANK() OVER (PARTITION BY type ORDER BY price_inr DESC) AS rank_num,
+    DENSE_RANK() OVER (PARTITION BY type ORDER BY price_inr DESC) AS dense_rank_num
+FROM bikes
+WHERE price_inr IS NOT NULL;
