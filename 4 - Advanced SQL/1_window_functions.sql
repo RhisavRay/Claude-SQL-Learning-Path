@@ -449,3 +449,31 @@ WHERE price_inr IS NOT NULL;
 FIRST_VALUE gives the first value in the ordered partition. LAST_VALUE gives the last — but there's a gotcha with LAST_VALUE involving window frames
 that we'll address when you hit it.
 */
+
+
+
+
+/*
+Task 4 — Navigation functions:
+
+4a. Write a query showing each order's order_id, order_date, bike model, price_inr, and the previous order's price (using LAG). Also calculate the
+price_change — the difference between the current price and previous price. Orders should be sorted by order_date.
+*/
+
+
+
+
+/*
+4b. For each customer, show their name and their first order date and most recent order date. Use FIRST_VALUE and LAST_VALUE with PARTITION BY
+customer_id ORDER BY order_date. Only show one row per customer. (Hint: you'll need DISTINCT or GROUP BY to collapse to one row per customer after
+the window functions run.)
+*/
+
+
+
+
+/*
+4c. Write a query that shows each bike's brand, model, price_inr, and how much more expensive it is compared to the next cheaper bike in the same
+type. Use LAG with PARTITION BY type ORDER BY price_inr DESC. Call the difference column premium_over_next.
+*/
+
