@@ -420,3 +420,4 @@ SELECT
     ) AS next_order_price
 FROM orders o
 INNER JOIN bikes b ON o.bike_id = b.bike_id;
+-- Last row has no next row, so LEAD returns NULL there.
