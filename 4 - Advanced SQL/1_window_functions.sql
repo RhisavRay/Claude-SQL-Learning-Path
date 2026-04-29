@@ -354,3 +354,11 @@ WHERE row_num = 1;
 price_inr, and quartile. Then count how many bikes are in each quartile.
 */
 
+SELECT
+    brand,
+    model,
+    price_inr,
+    NTILE(4) OVER (
+        ORDER BY price_inr
+    ) AS quartile
+FROM bikes;
