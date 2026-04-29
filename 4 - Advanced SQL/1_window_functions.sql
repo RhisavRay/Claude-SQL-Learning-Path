@@ -460,7 +460,20 @@ Task 4 — Navigation functions:
 price_change — the difference between the current price and previous price. Orders should be sorted by order_date.
 */
 
-
+SELECT
+    o.order_id,
+    o.order_date,
+    b.model,
+    b.price_inr,
+    LAG(price_inr, 1) OVER(
+        ORDER BY order_date
+    ) AS previous_order_price,
+    b.price_inr - LAG(price_inr, 1) OVER(
+        ORDER BY order_date
+    ) AS price_difference
+FROM orders o
+INNER JOIN bikes b
+    ON o.bike_id = b.bike_id;
 
 
 /*
