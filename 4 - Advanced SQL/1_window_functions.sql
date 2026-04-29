@@ -383,3 +383,16 @@ All require ORDER BY inside OVER() to define what "before" and "after" mean.
 
 Classic use case — period-over-period comparison:
 */
+
+SELECT
+    order_id,
+    order_date,
+    price_inr,
+    LAG(price_inr, 1) OVER (
+        ORDER BY order_date
+    ) AS prev_order_price,
+    price_inr - LAG(price_inr, 1) OVER (
+        ORDER BY order_date
+    ) AS price_diff
+FROM orders o
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
