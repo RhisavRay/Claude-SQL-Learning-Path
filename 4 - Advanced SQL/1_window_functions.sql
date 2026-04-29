@@ -269,3 +269,35 @@ SELECT
     DENSE_RANK() OVER (PARTITION BY type ORDER BY price_inr DESC) AS dense_rank_num
 FROM bikes
 WHERE price_inr IS NOT NULL;
+
+
+
+
+
+/*
+Task 3 — Ranking functions:
+
+3a. Write a query that ranks all bikes by price_inr descending (most expensive first). Show brand, model, price_inr, and three ranking columns:
+    row_num,
+    rank_num,
+    dense_rank_num
+Exclude the Harley with NULL price.
+*/
+
+
+
+
+/*
+3b. Using ROW_NUMBER() OVER (PARTITION BY type ORDER BY price_inr DESC), write a query that returns only the most expensive bike in each type. Show
+type, brand, model, price_inr. (Hint: you'll need a CTE or subquery to filter row_num = 1 — you can't filter window function results directly in
+WHERE.)
+*/
+
+
+
+
+/*
+3c. Using NTILE(4), divide all bikes into 4 price quartiles (cheapest 25%, next 25%, etc.) ordered by price_inr ascending. Show brand, model,
+price_inr, and quartile. Then count how many bikes are in each quartile.
+*/
+
