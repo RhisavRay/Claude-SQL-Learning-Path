@@ -284,7 +284,20 @@ Task 3 — Ranking functions:
 Exclude the Harley with NULL price.
 */
 
-
+SELECT
+    brand,
+    model,
+    price_inr,
+    ROW_NUMBER() OVER (
+        ORDER BY price_inr DESC
+    ) AS row_num,
+    RANK() OVER (
+        ORDER BY price_inr DESC
+    ) AS rank_num,
+    DENSE_RANK() OVER (
+        ORDER BY price_inr DESC
+    ) AS dense_rank_num
+FROM bikes;
 
 
 /*
