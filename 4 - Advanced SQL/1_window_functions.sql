@@ -482,7 +482,19 @@ customer_id ORDER BY order_date. Only show one row per customer. (Hint: you'll n
 the window functions run.)
 */
 
-
+SELECT
+    c.name,
+    FIRST_VALUE(o.order_date) OVER (
+        PARTITION BY c.customer_id
+        ORDER BY o.order_date
+    ) AS first_order,
+    LAST_VALUE(o.order_date) OVER (
+        PARTITION BY c.customer_id
+        ORDER BY o.order_date
+    ) AS last_order
+FROM customers c
+INNER JOIN orders o
+    ON o.customer_id = c.customer_id;
 
 
 /*
