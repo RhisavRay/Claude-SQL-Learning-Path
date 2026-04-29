@@ -328,6 +328,27 @@ FROM Ordered_bikes
 WHERE row_num = 1;
 
 
+-- Using subqueries
+SELECT
+    type,
+    brand,
+    model,
+    price_inr
+FROM (
+    SELECT
+        type,
+        brand,
+        model,
+        price_inr,
+        ROW_NUMBER() OVER (
+            PARTITION BY type
+            ORDER BY price_inr DESC
+        ) AS row_num
+    FROM bikes
+) AS Ordered_bikes
+WHERE row_num = 1;
+
+
 /*
 3c. Using NTILE(4), divide all bikes into 4 price quartiles (cheapest 25%, next 25%, etc.) ordered by price_inr ascending. Show brand, model,
 price_inr, and quartile. Then count how many bikes are in each quartile.
