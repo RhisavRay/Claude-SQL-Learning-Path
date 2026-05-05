@@ -482,7 +482,7 @@ customer_id ORDER BY order_date. Only show one row per customer. (Hint: you'll n
 the window functions run.)
 */
 
-SELECT
+SELECT DISTINCT
     c.name,
     FIRST_VALUE(o.order_date) OVER (
         PARTITION BY c.customer_id
@@ -491,11 +491,11 @@ SELECT
     LAST_VALUE(o.order_date) OVER (
         PARTITION BY c.customer_id
         ORDER BY o.order_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
     ) AS last_order
 FROM customers c
 INNER JOIN orders o
-    ON o.customer_id = c.customer_id
-GROUP BY c.name;
+    ON o.customer_id = c.customer_id;
 
 
 /*
@@ -510,7 +510,7 @@ SELECT
     price_inr - LAG(price_inr, 1) OVER(
         PARTITION BY type
         ORDER BY price_inr DESC
-    )
+    ) AS premium_over_next
 FROM bikes;
 
 
