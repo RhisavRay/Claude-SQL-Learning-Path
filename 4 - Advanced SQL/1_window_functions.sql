@@ -512,3 +512,158 @@ SELECT
         ORDER BY price_inr DESC
     )
 FROM bikes;
+
+
+
+
+/*
+**********************************************************************************************************************************************
+Lets say in a single query we have multiple window functions. I guess they can have different PARTITION BY columns. But can they have different
+ORDER BY columns? And if they can what result does it bring out?
+*/
+
+/*
+Yes, absolutely they can, and understanding this is key to using window functions effectively.
+
+Each window function is independent. The PARTITION BY and ORDER BY inside one OVER() clause has nothing to do with another OVER() clause in the same
+query. MySQL evaluates each window separately.
+*/
+
+
+-- Example 1 — Different ORDER BY in the same query
+SELECT
+    order_id,
+    order_date,
+    price_inr,
+    
+    -- Running total by date
+    SUM(price_inr) OVER (ORDER BY order_date) AS running_total_by_date,
+    
+    -- Running total by price (cheapest to most expensive)
+    SUM(price_inr) OVER (ORDER BY price_inr) AS running_total_by_price,
+    
+    -- Row number by date
+    ROW_NUMBER() OVER (ORDER BY order_date) AS row_by_date,
+    
+    -- Row number by price
+    ROW_NUMBER() OVER (ORDER BY price_inr DESC) AS row_by_price
+    
+FROM orders o
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
+
+/*
+Same row, four different window calculations, each with its own independent ordering. The output row itself doesn't move — it stays as order_id = 5,
+but the four window columns each tell a different story based on how they sorted the data internally.
+*/
+
+
+-- Example 2 — Different PARTITION BY in the same query
+SELECT
+    order_id,
+    customer_id,
+    order_date,
+    price_inr,
+    
+    -- Running total per customer
+    SUM(price_inr) OVER (
+        PARTITION BY customer_id 
+        ORDER BY order_date
+    ) AS customer_running_total,
+    
+    -- Running total across all orders
+    SUM(price_inr) OVER (
+        ORDER BY order_date
+    ) AS overall_running_total,
+    
+    -- Rank within customer's orders
+    ROW_NUMBER() OVER (
+        PARTITION BY customer_id 
+        ORDER BY order_date
+    ) AS customer_order_number,
+    
+    -- Rank across all orders
+    ROW_NUMBER() OVER (
+        ORDER BY order_date
+    ) AS overall_order_number
+    
+FROM orders o
+INNER JOIN bikes b ON o.bike_id = b.bike_id;
+
+/*
+For Arjun Mehta's second order:
+    customer_running_total = his first order + this order (resets per customer)
+    overall_running_total = all orders from day 1 up to this date (never resets)
+    customer_order_number = 2 (his second order)
+    overall_order_number = maybe 11 (the 11th order overall)
+*/
+
+
+-- Example 3 — Mixing different PARTITION BY and ORDER BY
+SELECT
+    brand,
+    model,
+    type,
+    price_inr,
+    
+    -- Cheapest bike in this type
+    FIRST_VALUE(price_inr) OVER (
+        PARTITION BY type 
+        ORDER BY price_inr
+    ) AS cheapest_in_type,
+    
+    -- Most expensive bike overall (no partition)
+    FIRST_VALUE(price_inr) OVER (
+        ORDER BY price_inr DESC
+    ) AS most_expensive_overall,
+    
+    -- Previous bike by price within type
+    LAG(price_inr) OVER (
+        PARTITION BY type 
+        ORDER BY price_inr
+    ) AS prev_bike_in_type,
+    
+    -- Previous bike by price globally
+    LAG(price_inr) OVER (
+        ORDER BY price_inr
+    ) AS prev_bike_overall
+    
+FROM bikes
+WHERE price_inr IS NOT NULL;
+
+/*
+Every row gets all four values, but each window function is answering a completely different question based on its own partitioning and ordering.
+*/
+
+
+/*
+What result does this bring?
+
+Flexibility. You can answer multiple analytical questions in a single query without repeating the base data or doing multiple self-joins.
+A single row can simultaneously show:
+    "This customer's running total" (partitioned by customer)
+    "The overall running total" (not partitioned)
+    "This bike's rank in its type" (partitioned by type, ordered by price)
+    "This bike's rank overall" (not partitioned, ordered by price)
+All four metrics co-exist on the same output row. Each window function does its own calculation independently.
+
+
+The only ORDER BY that matters for the final output
+
+The ORDER BY inside OVER() controls how the window function computes. The ORDER BY at the end of the query controls how the final result set is sorted
+for display:
+*/
+
+SELECT
+    model,
+    price_inr,
+    ROW_NUMBER() OVER (ORDER BY price_inr DESC) AS price_rank
+FROM bikes
+ORDER BY model;  -- Final output sorted alphabetically by model
+
+/*
+The price_rank column still ranks by price (1 = most expensive), but the rows themselves appear in alphabetical order by model name. Window
+calculation and output display order are independent.
+
+Does this clear it up? The key mental model: each OVER() clause creates its own independent window, evaluated separately, then all results get
+stitched onto the same output rows.
+*/
